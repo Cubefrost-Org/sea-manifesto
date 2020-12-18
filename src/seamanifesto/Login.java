@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -191,10 +192,14 @@ public class Login extends javax.swing.JFrame {
             String username = unameField.getText();
             String pwd = pwdField.getText();
             
-            if(!username.isEmpty() || !pwd.isBlank())
+            if(!username.isEmpty() || !pwd.isBlank()){
                 credWriter.append(username + "," + pwd + "\n");
-            else
+                JOptionPane.showMessageDialog(this, "Credentials saved successfully.");
+            }
+            else{
                 System.out.println("Username and password cannot be empty.");
+                JOptionPane.showMessageDialog(this, "Username and password cannot be empty.", "Invalid Credentials", JOptionPane.WARNING_MESSAGE);
+            }
             credWriter.close();
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -220,12 +225,14 @@ public class Login extends javax.swing.JFrame {
                 }
                 line = credReader.readLine();
             }
-            
+
             if(found){
                 System.out.println("Welcome " + username);
+                JOptionPane.showMessageDialog(this, "Welcome " + username + "!");
             }
             else{
                 System.out.println("Invalid credentials.");
+                JOptionPane.showMessageDialog(this, "Invalid credentials!", "User not found", JOptionPane.ERROR_MESSAGE);
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
