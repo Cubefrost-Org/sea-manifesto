@@ -5,6 +5,14 @@
  */
 package seamanifesto;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author nibba
@@ -30,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         logoLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
         credits = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        credPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
         signupButton = new javax.swing.JButton();
         pwdField = new javax.swing.JPasswordField();
@@ -52,10 +60,15 @@ public class Login extends javax.swing.JFrame {
 
         credits.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/credits.png"))); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        credPanel.setBackground(new java.awt.Color(255, 255, 255));
+        credPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         loginButton.setText("LogIn");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         signupButton.setText("Sign Up");
         signupButton.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +77,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        pwdField.setText("my password");
         pwdField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwdFieldActionPerformed(evt);
@@ -75,7 +87,6 @@ public class Login extends javax.swing.JFrame {
         pwdLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pwdLabel.setText("Password");
 
-        unameField.setText("my_username");
         unameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unameFieldActionPerformed(evt);
@@ -86,42 +97,42 @@ public class Login extends javax.swing.JFrame {
         unameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         unameLabel.setText("Username");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout credPanelLayout = new javax.swing.GroupLayout(credPanel);
+        credPanel.setLayout(credPanelLayout);
+        credPanelLayout.setHorizontalGroup(
+            credPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(credPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(credPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(credPanelLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(signupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                         .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(credPanelLayout.createSequentialGroup()
+                        .addGroup(credPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(unameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pwdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(credPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(unameField)
                             .addComponent(pwdField))))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        credPanelLayout.setVerticalGroup(
+            credPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(credPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(credPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(unameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(unameField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(credPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pwdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pwdField, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(credPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(signupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
@@ -134,7 +145,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(202, 202, 202)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(credPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(logoLabel)
@@ -156,7 +167,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(titleLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(credPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(credits)
                 .addContainerGap())
@@ -174,8 +185,55 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_pwdFieldActionPerformed
 
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            FileWriter credWriter = new FileWriter("creds.txt", true);
+            String username = unameField.getText();
+            String pwd = pwdField.getText();
+            
+            if(!username.isEmpty() || !pwd.isBlank())
+                credWriter.append(username + "," + pwd + "\n");
+            else
+                System.out.println("Username and password cannot be empty.");
+            credWriter.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_signupButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            BufferedReader credReader = new BufferedReader(new FileReader("creds.txt"));
+            String username = unameField.getText();
+            String pwd = pwdField.getText();
+            boolean found = false;
+            
+            String line = credReader.readLine();
+            while(line != null){
+                String[] creds = line.split(",");
+                
+                if(creds[0].equals(username) && creds[1].equals(pwd)){
+                    found = true;
+                    break;
+                }
+                line = credReader.readLine();
+            }
+            
+            if(found){
+                System.out.println("Welcome " + username);
+            }
+            else{
+                System.out.println("Invalid credentials.");
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,8 +271,8 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel credPanel;
     private javax.swing.JLabel credits;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JPasswordField pwdField;
