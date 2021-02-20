@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package seamanifesto;
-
+import java.io.FileReader;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
 /**
  *
  * @author nibba
@@ -15,6 +17,18 @@ public class NewArrivalManifest extends javax.swing.JFrame {
      * Creates new form NewArrivalManifest
      */
     public NewArrivalManifest() {
+        
+        JSONParser jparser = new JSONParser();
+        
+        try {
+            Object obj = jparser.parse(new FileReader(
+                    getClass().getResource("/schemas/SAM.json").getFile()));
+            
+            JSONObject samSchema = (JSONObject) obj;
+            System.out.println(samSchema.get("description").getClass());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         initComponents();
     }
 
