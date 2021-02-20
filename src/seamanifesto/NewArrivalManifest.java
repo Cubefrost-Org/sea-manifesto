@@ -5,8 +5,14 @@
  */
 package seamanifesto;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JSeparator;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 /**
  *
  * @author nibba
@@ -24,12 +30,27 @@ public class NewArrivalManifest extends javax.swing.JFrame {
             Object obj = jparser.parse(new FileReader(
                     getClass().getResource("/schemas/SAM.json").getFile()));
             
-            JSONObject samSchema = (JSONObject) obj;
-            System.out.println(samSchema.get("description").getClass());
-        } catch (Exception e) {
-            e.printStackTrace();
+            this.samSchema = (JSONObject) obj;
+
+        } catch (IOException | ParseException e) {
         }
         initComponents();
+        generateForm();
+    }
+    
+    private void generateForm(){
+        this.descLabel.setText((String) this.samSchema.get("description"));
+        
+        JSONObject reqProps = (JSONObject) this.samSchema.get("properties");
+        
+        for(Iterator iterator = reqProps.keySet().iterator(); iterator.hasNext();) {
+            String key = (String) iterator.next();
+            System.out.println(key + "=" + reqProps.get(key)+"ooooooo\n");
+            
+            
+//            generateFields(reqProps.get(key));
+            
+        }
     }
 
     /**
@@ -42,6 +63,9 @@ public class NewArrivalManifest extends javax.swing.JFrame {
     private void initComponents() {
 
         fieldPane = new javax.swing.JScrollPane();
+        formPanel = new javax.swing.JPanel();
+        descLabel = new javax.swing.JLabel();
+        fieldSep = new javax.swing.JSeparator();
         addEntryButton = new javax.swing.JButton();
         removeEntryButton = new javax.swing.JButton();
         continueButton = new javax.swing.JButton();
@@ -50,6 +74,32 @@ public class NewArrivalManifest extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         fieldPane.setToolTipText("");
+
+        descLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        descLabel.setText("Description");
+        descLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        fieldSep.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout formPanelLayout = new javax.swing.GroupLayout(formPanel);
+        formPanel.setLayout(formPanelLayout);
+        formPanelLayout.setHorizontalGroup(
+            formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formPanelLayout.createSequentialGroup()
+                .addComponent(descLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(fieldSep)
+        );
+        formPanelLayout.setVerticalGroup(
+            formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formPanelLayout.createSequentialGroup()
+                .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fieldSep, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 463, Short.MAX_VALUE))
+        );
+
+        fieldPane.setViewportView(formPanel);
 
         addEntryButton.setText("Add Entry");
         addEntryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +132,7 @@ public class NewArrivalManifest extends javax.swing.JFrame {
                 .addComponent(addEntryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(removeEntryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 506, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -92,8 +142,8 @@ public class NewArrivalManifest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldPane, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(fieldPane, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addEntryButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                     .addComponent(removeEntryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -147,10 +197,14 @@ public class NewArrivalManifest extends javax.swing.JFrame {
         });
     }
 
+    private JSONObject samSchema;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addEntryButton;
     private javax.swing.JButton continueButton;
+    private javax.swing.JLabel descLabel;
     private javax.swing.JScrollPane fieldPane;
+    private javax.swing.JSeparator fieldSep;
+    private javax.swing.JPanel formPanel;
     private javax.swing.JButton removeEntryButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
