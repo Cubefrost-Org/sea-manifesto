@@ -18,7 +18,7 @@ public class LoginManager {
     
     
     
-    public static void Create() {
+    public static boolean Create() {
       Connection c = null;
       Statement stmt = null;
       
@@ -34,17 +34,16 @@ public class LoginManager {
          stmt.executeUpdate(sql);
          stmt.close();
          c.close();
+         return true;
       } catch ( Exception e ) {
          System.out.println( e.getClass().getName() + ": " + e.getMessage() );
-      }
-      System.out.println("Table created successfully");
-      
-    
+         return false;
+      }    
       
    }
   
   
-  public static void Insert(String Username,String Password) {
+  public static boolean Insert(String Username,String Password) {
       Connection c = null;
       Statement stmt = null;
       
@@ -66,11 +65,12 @@ public class LoginManager {
          stmt.close();
          c.commit();
          c.close();
+         return true;
       } catch ( Exception e ) {
          System.out.println( e.getClass().getName() + ": " + e.getMessage() );
-         
+         return false;
       }
-      System.out.println("Records created successfully");
+      
    }
   
   public static boolean Check(String Username, String Password) {
@@ -91,17 +91,21 @@ public class LoginManager {
          String password = rs.getString("PASSWORD");
          
          if (username.equals(Username) && password.equals(Password)){
+             rs.close();
+             stmt.close();
+             c.close();
              return true;
          }
       }
       rs.close();
       stmt.close();
       c.close();
+      
    } catch ( Exception e ) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
       System.exit(0);
    }
-   System.out.println("Operation done successfully");
+   
    return false;
   }
     

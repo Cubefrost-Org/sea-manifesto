@@ -194,7 +194,17 @@ public class Login extends javax.swing.JFrame {
         String pwd = pwdField.getText();
         
         Create();
-        Insert(username,pwd);
+        
+        boolean status=Insert(username,pwd);
+        
+        if(status){
+                System.out.println("Welcome " + username);
+                JOptionPane.showMessageDialog(this, "Signup successful " + username + "!");
+            }
+        else{
+             System.out.println("Invalid credentials.");
+             JOptionPane.showMessageDialog(this, "Could not create account", "Technical fault", JOptionPane.ERROR_MESSAGE);
+            }
         
     }//GEN-LAST:event_signupButtonActionPerformed
 
