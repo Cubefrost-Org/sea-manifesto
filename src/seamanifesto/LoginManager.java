@@ -15,19 +15,15 @@ import java.sql.Statement;
  * @author TAMOJIT
  */
 public class LoginManager {
-    
-    
-    
+
     public static boolean Create() {
-      Connection c = null;
-      Statement stmt = null;
-      
+
       try {
          Class.forName("org.sqlite.JDBC");
-         c = DriverManager.getConnection("jdbc:sqlite:auth.db");
+         Connection c = DriverManager.getConnection("jdbc:sqlite:auth.db");
          System.out.println("Opened database successfully");
 
-         stmt = c.createStatement();
+         Statement stmt = c.createStatement();
          String sql = "CREATE TABLE AUTH " +
                         "(USERNAME TEXT PRIMARY KEY    NOT NULL, " + 
                         " PASSWORD       TEXT     NOT NULL)"; 
@@ -44,23 +40,19 @@ public class LoginManager {
   
   
   public static boolean Insert(String Username,String Password) {
-      Connection c = null;
-      Statement stmt = null;
-      
+
       try {
          Class.forName("org.sqlite.JDBC");
-         c = DriverManager.getConnection("jdbc:sqlite:auth.db");
+         Connection c = DriverManager.getConnection("jdbc:sqlite:auth.db");
          c.setAutoCommit(false);
          System.out.println("Opened database successfully");
 
-         stmt = c.createStatement();
+         Statement stmt = c.createStatement();
          String sql = "INSERT INTO AUTH (USERNAME,PASSWORD) " +
                         "VALUES ('"+Username+"', '"+Password+"');"; 
          
          System.out.println(sql);
          stmt.executeUpdate(sql);
-
-         
 
          stmt.close();
          c.commit();
@@ -75,57 +67,31 @@ public class LoginManager {
   
   public static boolean Check(String Username, String Password) {
 
-   Connection c = null;
-   
    try {
       Class.forName("org.sqlite.JDBC");
-      c = DriverManager.getConnection("jdbc:sqlite:auth.db");
+      Connection c = DriverManager.getConnection("jdbc:sqlite:auth.db");
       c.setAutoCommit(false);
       System.out.println("Opened database successfully");
       
-      String query="SELECT * FROM AUTH WHERE USERNAME=? AND PASSWORD=? ";
+      String query="SELECT PASSWORD FROM AUTH WHERE USERNAME=\""+Username+"\";";
       
       var pst=c.prepareStatement(query);
-      
-      pst.setString(1, Username);
-      pst.setString(2,Password);
-      
-      
-     
       ResultSet rs = pst.executeQuery();
-      
-      
-      
-      
-      int count=0;
-      while(rs.next()){
-          count++;          
-      }
-      
-      
+      String storedPassword = rs.getString("PASSWORD");
 
-      
       rs.close();
-      
       c.close();
       
-      
-      
-      if (count==1){
-          return true;
-      }else{
-          return false;
-      }
-      
-      
-      
-      
-   } catch ( Exception e ) {
+      return storedPassword.equals(Password);
+
+   } catch (java.sql.SQLException e){
+       return false;
+   }catch ( Exception e ) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
       System.exit(0);
    }
-   
+
    return false;
   }
-    
+
 }

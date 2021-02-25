@@ -5,6 +5,7 @@
  */
 package seamanifesto;
 
+import java.io.File;
 import javax.swing.JOptionPane;
 import static seamanifesto.LoginManager.Check;
 import static seamanifesto.LoginManager.Create;
@@ -186,7 +187,8 @@ public class Login extends javax.swing.JFrame {
         String username = unameField.getText();
         String pwd = pwdField.getText();
         
-        Create();
+        if(!(new File("auth.db").exists()))
+            Create();
         
         boolean status=Insert(username,pwd);
         
