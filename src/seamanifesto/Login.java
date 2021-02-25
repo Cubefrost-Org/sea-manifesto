@@ -5,13 +5,7 @@
  */
 package seamanifesto;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.File;
 import javax.swing.JOptionPane;
 import static seamanifesto.LoginManager.Check;
 import static seamanifesto.LoginManager.Create;
@@ -193,7 +187,8 @@ public class Login extends javax.swing.JFrame {
         String username = unameField.getText();
         String pwd = pwdField.getText();
         
-        Create();
+        if(!(new File("auth.db").exists()))
+            Create();
         
         boolean status=Insert(username,pwd);
         
