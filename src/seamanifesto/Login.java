@@ -202,8 +202,8 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Signup successful " + username + "!");
             }
         else{
-             System.out.println("Invalid credentials.");
-             JOptionPane.showMessageDialog(this, "Could not create account", "Technical fault", JOptionPane.ERROR_MESSAGE);
+                System.out.println("Invalid credentials.");
+                JOptionPane.showMessageDialog(this, "Could not create account", "Technical fault", JOptionPane.ERROR_MESSAGE);
             }
         
     }//GEN-LAST:event_signupButtonActionPerformed

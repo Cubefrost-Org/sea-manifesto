@@ -76,30 +76,49 @@ public class LoginManager {
   public static boolean Check(String Username, String Password) {
 
    Connection c = null;
-   Statement stmt = null;
+   
    try {
       Class.forName("org.sqlite.JDBC");
       c = DriverManager.getConnection("jdbc:sqlite:auth.db");
       c.setAutoCommit(false);
       System.out.println("Opened database successfully");
-
-      stmt = c.createStatement();
-      ResultSet rs = stmt.executeQuery( "SELECT * FROM AUTH;" );
       
-      while ( rs.next() ) {
-         String username = rs.getString("USERNAME");
-         String password = rs.getString("PASSWORD");
-         
-         if (username.equals(Username) && password.equals(Password)){
-             rs.close();
-             stmt.close();
-             c.close();
-             return true;
-         }
+      String query="SELECT * FROM AUTH WHERE USERNAME=? AND PASSWORD=? ";
+      
+      var pst=c.prepareStatement(query);
+      
+      pst.setString(1, Username);
+      pst.setString(2,Password);
+      
+      
+     
+      ResultSet rs = pst.executeQuery();
+      
+      
+      
+      
+      int count=0;
+      while(rs.next()){
+          count++;          
       }
+      
+      
+
+      
       rs.close();
-      stmt.close();
+      
       c.close();
+      
+      
+      
+      if (count==1){
+          return true;
+      }else{
+          return false;
+      }
+      
+      
+      
       
    } catch ( Exception e ) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
