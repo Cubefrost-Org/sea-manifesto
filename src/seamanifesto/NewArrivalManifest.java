@@ -8,11 +8,13 @@ import java.awt.GridLayout;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
-import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -45,6 +47,25 @@ public class NewArrivalManifest extends javax.swing.JFrame {
         return (String) prop.get("description");
     }
     
+    private String getType(JSONObject prop){
+        return (String) prop.get("type");
+    }
+    
+    private boolean hasKey(JSONObject prop, String key){
+        return prop.containsKey(key);
+    }
+    
+    private double[] getRange(JSONObject prop){
+        Double min = (Double) prop.get("minimum");
+        Double max = (Double) prop.get("maximum");
+        
+        double[] range = new double[2];
+        range[0] = min;
+        range[1] = max;
+        
+        return range;
+    }
+    
     private void generateFields(JSONObject group){
         
         JSONObject groupProps = (JSONObject) group.get("properties");
@@ -54,15 +75,43 @@ public class NewArrivalManifest extends javax.swing.JFrame {
             System.out.println(key + "=" + groupProps.get(key));
 
             JPanel field = new JPanel(new GridLayout());
-            JLabel name = new JLabel(getDesc((JSONObject) groupProps.get(key)));
-            JTextField entry = new JTextField();
+            
+            JLabel name = new JLabel(key);
+            name.setToolTipText(getDesc((JSONObject) groupProps.get(key)));
+
+            field.add(name);
+
+            if(getType((JSONObject) groupProps.get(key)).equals("string")){
+                JTextField entry = new JTextField();
+                entry.setAlignmentX(RIGHT_ALIGNMENT);
+                field.add(entry);
+            }
+
+            if(getType((JSONObject) groupProps.get(key)).equals("number")){
+                
+                double[] range = getRange((JSONObject) groupProps.get(key));
+                
+                JPanel comboPanel = new JPanel(new GridLayout(1, 2));
+                
+                JSlider slider = new JSlider((int)range[0], (int)range[1]);
+                slider.setPaintLabels(true);
+                slider.setAlignmentX(CENTER_ALIGNMENT);
+                
+                JLabel val = new JLabel("0");
+                val.setAlignmentX(CENTER_ALIGNMENT);
+
+                comboPanel.add(val);
+                comboPanel.add(slider);
+                field.add(comboPanel);
+                
+                slider.addChangeListener((ChangeEvent e) -> {
+                    val.setText(""+((JSlider)e.getSource()).getValue());
+                });
+            }
             
             field.setAlignmentX(CENTER_ALIGNMENT);
             name.setAlignmentX(LEFT_ALIGNMENT);
-            entry.setAlignmentX(RIGHT_ALIGNMENT);
-            
-            field.add(name);
-            field.add(entry);
+
             formPanel.add(field);
         }
     }
