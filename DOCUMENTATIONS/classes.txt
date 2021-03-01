@@ -1,0 +1,27 @@
+|
+|Master Manager (Manager Class)
+|\
+| User Manager (Manager Class)
+|   \
+|   Login.form, Login.java, Signup.form. Signup.java, Wrong password.form, Wrong password.java (Boundary Class)
+|\
+| Dashboard UI.form, Dashboard UI.java (Boundary Class)
+|
+|\
+| Preferences.form, Preferences.java (Boundary Class)
+|
+|\
+| SAM.java, SAA.java, SDM.java, SDN.java, SDA.java, SEI.java  (Entity Class)
+|
+|\
+| User.java (Control Class)
+|
+|\
+| Form Manager (Manager Class)
+|   \
+|   SAMUI.form, SAMUI.java, SAAUI.form, SAAUI.java, SDMUI.form, SDMUI.java,SDNUI.form, SDN.java, SEIUI.form, SEIUI.java, SDAUI.form, SDAUI.java (Boundary Class)
+|
+|\
+| File Manager (Manager Class)
+|   \
+|   UploadUI.form, UploadUI.java, Upload.java, Data Saving Interface UI.form, Data Saving Interface UI.java, Data Saving.java, Data Selection UI.form, Data Selection UI.java, Data Selection.java, Data Export.java (Boundary Class)
