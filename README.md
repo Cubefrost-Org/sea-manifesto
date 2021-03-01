@@ -5,7 +5,7 @@ _Project Summary:_
 Application for Ship Agents from all over India to record ship details and ammend them if necessary and to upload them over to the Indian Customs for inspection. 
 
 ## Project Wiki:
-[Wiki page](http://103.127.146.165/wiki/index.php?title=Cubefrost:Main)
+[Wiki page](http://103.127.146.165/wiki/index.php?title=CubeFrost:Main)
 
 ## Team Members:
 - Subhradip Debnath [Project Manager]
