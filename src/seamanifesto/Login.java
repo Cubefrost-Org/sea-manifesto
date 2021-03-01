@@ -5,14 +5,11 @@
  */
 package seamanifesto;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.File;
 import javax.swing.JOptionPane;
+import static seamanifesto.LoginManager.Check;
+import static seamanifesto.LoginManager.Create;
+import static seamanifesto.LoginManager.Insert;
 
 /**
  *
@@ -186,47 +183,32 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_pwdFieldActionPerformed
 
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
-        try {
-            // TODO add your handling code here:
-            FileWriter credWriter = new FileWriter("creds.txt", true);
-            String username = unameField.getText();
-            String pwd = pwdField.getText();
-            
-            if(!username.isEmpty() || !pwd.isBlank()){
-                credWriter.append(username + "," + pwd + "\n");
-                JOptionPane.showMessageDialog(this, "Credentials saved successfully.");
+        
+        String username = unameField.getText();
+        String pwd = pwdField.getText();
+        
+        if(!(new File("auth.db").exists()))
+            Create();
+        
+        boolean status=Insert(username,pwd);
+        
+        if(status){
+                System.out.println("Welcome " + username);
+                JOptionPane.showMessageDialog(this, "Signup successful " + username + "!");
             }
-            else{
-                System.out.println("Username and password cannot be empty.");
-                JOptionPane.showMessageDialog(this, "Username and password cannot be empty.", "Invalid Credentials", JOptionPane.WARNING_MESSAGE);
+        else{
+                System.out.println("Invalid credentials.");
+                JOptionPane.showMessageDialog(this, "Could not create account", "Technical fault", JOptionPane.ERROR_MESSAGE);
             }
-            credWriter.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
     }//GEN-LAST:event_signupButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        try {
-            // TODO add your handling code here:
-            BufferedReader credReader = new BufferedReader(new FileReader("creds.txt"));
-            String username = unameField.getText();
-            String pwd = pwdField.getText();
-            boolean found = false;
-            
-            String line = credReader.readLine();
-            while(line != null){
-                String[] creds = line.split(",");
-                
-                if(creds[0].equals(username) && creds[1].equals(pwd)){
-                    found = true;
-                    break;
-                }
-                line = credReader.readLine();
-            }
-
-            if(found){
+        
+        String username = unameField.getText();
+        String pwd = pwdField.getText();
+        boolean found = Check(username,pwd);
+        if(found){
                 System.out.println("Welcome " + username);
                 JOptionPane.showMessageDialog(this, "Welcome " + username + "!");
             }
@@ -234,11 +216,7 @@ public class Login extends javax.swing.JFrame {
                 System.out.println("Invalid credentials.");
                 JOptionPane.showMessageDialog(this, "Invalid credentials!", "User not found", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         
     }//GEN-LAST:event_loginButtonActionPerformed
 
