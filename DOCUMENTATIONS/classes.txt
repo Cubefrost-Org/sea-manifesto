@@ -1,5 +1,6 @@
 |
 |Master Manager (Manager Class)
+|
 |\
 | User Manager (Manager Class)
 |   \
@@ -11,7 +12,7 @@
 | Preferences.form, Preferences.java (Boundary Class)
 |
 |\
-| SAM.java, SAA.java, SDM.java, SDN.java, SDA.java, SEI.java  (Entity Class)
+| SAM.java, SAA.java, SDM.java, SDN.java, SDA.java, SEI.java, Form.java  (Entity Class)
 |
 |\
 | User.java (Control Class)
