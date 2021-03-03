@@ -116,7 +116,7 @@ public class StartUI extends javax.swing.JFrame {
         try{
             
         for(int i=0;i<=120;i++){
-            Thread.sleep(70);
+            Thread.sleep(100);
             this.bar.setValue(i);
             if(i==0)
                 msgLabel.setText("Powering up...");
