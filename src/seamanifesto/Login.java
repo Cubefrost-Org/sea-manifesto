@@ -211,6 +211,8 @@ public class Login extends javax.swing.JFrame {
         if(found){
                 System.out.println("Welcome " + username);
                 JOptionPane.showMessageDialog(this, "Welcome " + username + "!");
+                UserManager.USER=username;
+                this.dispose();
             }
             else{
                 System.out.println("Invalid credentials.");
