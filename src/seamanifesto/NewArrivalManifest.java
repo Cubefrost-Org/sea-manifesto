@@ -14,7 +14,6 @@ import javax.swing.JSeparator;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -44,7 +43,7 @@ public class NewArrivalManifest extends javax.swing.JFrame {
     }
     
     private String getDesc(JSONObject prop){
-        return (String) prop.get("description");
+        return (String) prop.getOrDefault("description", "No description");
     }
     
     private String getType(JSONObject prop){
@@ -56,14 +55,17 @@ public class NewArrivalManifest extends javax.swing.JFrame {
     }
     
     private double[] getRange(JSONObject prop){
-        Double min = (Double) prop.get("minimum");
-        Double max = (Double) prop.get("maximum");
-        
         double[] range = new double[2];
-        range[0] = min;
-        range[1] = max;
-        
-        return range;
+        try{
+            Double min = (Double) prop.get("minimum");
+            Double max = (Double) prop.get("maximum");
+            range[0] = min;
+            range[1] = max;
+        }catch(Exception e){
+            System.out.println(prop);
+        }finally{
+            return range;
+        }
     }
     
     private void generateFields(JSONObject group){
@@ -72,7 +74,6 @@ public class NewArrivalManifest extends javax.swing.JFrame {
         
         for(Iterator iterator = groupProps.keySet().iterator(); iterator.hasNext();){
             String key = (String) iterator.next();
-            System.out.println(key + "=" + groupProps.get(key));
 
             JPanel field = new JPanel(new GridLayout());
             
@@ -109,6 +110,17 @@ public class NewArrivalManifest extends javax.swing.JFrame {
                 });
             }
             
+            if(getType((JSONObject) groupProps.get(key)).equals("object")){
+                JLabel objLabel = new JLabel("<><><><><><><><><><><><><><><>");
+                formPanel.add(objLabel);
+                generateFields((JSONObject) groupProps.get(key));
+            }
+            
+            if(getType((JSONObject) groupProps.get(key)).equals("array")){
+                JSONObject arrayField = (JSONObject) groupProps.get(key);
+                generateFields((JSONObject) arrayField.get("items"));
+            }
+            
             field.setAlignmentX(CENTER_ALIGNMENT);
             name.setAlignmentX(LEFT_ALIGNMENT);
 
@@ -128,7 +140,6 @@ public class NewArrivalManifest extends javax.swing.JFrame {
 
             formPanel.add(new JSeparator());
             generateFields((JSONObject) reqProps.get(key));
-            System.out.println("===================");
             
         }
     }
