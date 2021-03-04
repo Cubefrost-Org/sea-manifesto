@@ -18,6 +18,7 @@ public class Form {
     private String jobID;
     private String date;
     private String declaration;
+
     Form(String json, String msgtyp,String mid, String repevent, String sID, String jID, String dt, String dec){
         this.jsonEntry=json;
         this.messageType=msgtyp;
@@ -28,6 +29,7 @@ public class Form {
         this.date=dt;
         this.declaration=dec;
     }
+
     private String msgtype(){
         return this.messageType;
     }
@@ -55,5 +57,5 @@ public class Form {
     public String getFileName(){
         return this.msgtype()+"_"+this.messageID()+"_"+this.reportingEvent()+"_"+this.senderID()+"_"+this.jobID()+"_"+this.Date()+"_"+this.declaration();
     }
-    
+
 }
