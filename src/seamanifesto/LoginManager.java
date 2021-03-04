@@ -5,6 +5,9 @@
  */
 package seamanifesto;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,6 +18,29 @@ import java.sql.Statement;
  * @author TAMOJIT
  */
 public class LoginManager {
+    
+    public static String Hashstring(String input) 
+    { 
+        
+        try {  
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes()); 
+  
+            // Convert byte array into signum representation 
+            BigInteger no = new BigInteger(1, messageDigest); 
+  
+            // Convert message digest into hex value 
+            String hashtext = no.toString(16); 
+            while (hashtext.length() < 32) { 
+                hashtext = "0" + hashtext; 
+            } 
+            return hashtext; 
+        }  
+        // For specifying wrong message digest algorithms 
+        catch (NoSuchAlgorithmException e) { 
+            throw new RuntimeException(e); 
+        } 
+    }
 
     public static boolean Create() {
 
@@ -42,6 +68,8 @@ public class LoginManager {
   public static boolean Insert(String Username,String Password) {
 
       try {
+          
+         Password=Hashstring(Password);
          Class.forName("org.sqlite.JDBC");
          Connection c = DriverManager.getConnection("jdbc:sqlite:auth.db");
          c.setAutoCommit(false);
@@ -68,6 +96,7 @@ public class LoginManager {
   public static boolean Check(String Username, String Password) {
 
    try {
+      Password=Hashstring(Password);
       Class.forName("org.sqlite.JDBC");
       Connection c = DriverManager.getConnection("jdbc:sqlite:auth.db");
       c.setAutoCommit(false);
@@ -93,5 +122,9 @@ public class LoginManager {
 
    return false;
   }
+  
+  
+  
+  
 
 }
