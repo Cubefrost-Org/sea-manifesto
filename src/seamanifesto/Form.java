@@ -10,6 +10,7 @@ package seamanifesto;
  * @author alex
  */
 public class Form {
+    private String jsonEntry;
     private String messageType;
     private String messageid;
     private String reportingevent;
@@ -17,7 +18,9 @@ public class Form {
     private String jobID;
     private String date;
     private String declaration;
-    Form(String msgtyp,String mid, String repevent, String sID, String jID, String dt, String dec){
+
+    Form(String json, String msgtyp,String mid, String repevent, String sID, String jID, String dt, String dec){
+        this.jsonEntry=json;
         this.messageType=msgtyp;
         this.messageid=mid;
         this.reportingevent= repevent;
@@ -26,26 +29,33 @@ public class Form {
         this.date=dt;
         this.declaration=dec;
     }
-    protected String msgtype(){
+
+    private String msgtype(){
         return this.messageType;
     }
-    protected String messageID(){
+    private String messageID(){
         return this.messageid;
     }
-    protected String reportingEvent(){
+    private String reportingEvent(){
         return this.reportingevent;
     }
-    protected String senderID(){
+    private String senderID(){
         return this.sendID;
     }
-    protected String jobID(){
+    private String jobID(){
         return this.jobID;
     }
-    protected String Date(){
+    private String Date(){
         return this.date;
     }
-    protected String declaration(){
+    private String declaration(){
         return this.declaration;
     }
-    
+    public String getData(){
+        return jsonEntry;
+    }
+    public String getFileName(){
+        return this.msgtype()+"_"+this.messageID()+"_"+this.reportingEvent()+"_"+this.senderID()+"_"+this.jobID()+"_"+this.Date()+"_"+this.declaration();
+    }
+
 }
