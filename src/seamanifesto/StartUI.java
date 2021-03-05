@@ -130,6 +130,8 @@ public class StartUI extends javax.swing.JFrame {
                 i+=(int)(Math.random()*5);
             }
         }
+        
+        
         this.dispose();
         return 1;
         }catch(Exception e){
@@ -165,6 +167,7 @@ public class StartUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new StartUI().setVisible(true);
+                
             }
         });
     }
