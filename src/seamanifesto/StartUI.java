@@ -120,11 +120,11 @@ public class StartUI extends javax.swing.JFrame {
             this.bar.setValue(i);
             if(i==0)
                 msgLabel.setText("Powering up...");
-            if(i==30)
+            if(i>=30)
                 msgLabel.setText("Loading assets... setting sails...");
-            if(i==60)
+            if(i>=60)
                 msgLabel.setText("Checking file systems and stockpiles...");
-            if(i==90)
+            if(i>=90)
                 msgLabel.setText("And here off we go...");
             if(i>=20 && i<=80){
                 i+=(int)(Math.random()*5);
