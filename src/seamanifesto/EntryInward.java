@@ -21,18 +21,18 @@ import org.json.simple.parser.ParseException;
  *
  * @author nibba
  */
-public class DepartureManifestAmmendment extends javax.swing.JFrame {
+public class EntryInward extends javax.swing.JFrame {
 
     /**
      * Creates new form NewArrivalManifest
      */
-    public DepartureManifestAmmendment() {
+    public EntryInward() {
         
         JSONParser jparser = new JSONParser();
         
         try {
             Object obj = jparser.parse(new FileReader(
-                    getClass().getResource("/schemas/SDA.json").getFile()));
+                    getClass().getResource("/schemas/SEI.json").getFile()));
             
             this.samSchema = (JSONObject) obj;
 
@@ -191,7 +191,7 @@ public class DepartureManifestAmmendment extends javax.swing.JFrame {
         });
 
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Departure Manifest Ammendment");
+        titleLabel.setText("Sea Entry Inward");
         titleLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         titleLabel.setFocusable(false);
 
@@ -252,13 +252,13 @@ public class DepartureManifestAmmendment extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DepartureManifestAmmendment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EntryInward.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DepartureManifestAmmendment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EntryInward.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DepartureManifestAmmendment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EntryInward.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DepartureManifestAmmendment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EntryInward.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -266,7 +266,7 @@ public class DepartureManifestAmmendment extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DepartureManifestAmmendment().setVisible(true);
+                new EntryInward().setVisible(true);
             }
         });
     }

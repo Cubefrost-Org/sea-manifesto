@@ -1,0 +1,489 @@
+{
+	"definitions": {},
+	"type": "object",
+	"description": "ICEGATE Schema_Version:SAM1103",
+	"required": [
+		"headerField",
+		"master",
+		"digSign"
+	],
+	"properties": {
+
+		"headerField": {
+			"type": "object",
+			"required": [
+				"senderID",
+				"receiverID",
+				"versionNo",
+				"indicator",
+				"messageID",
+				"sequenceOrControlNumber",
+				"date",
+				"time",
+				"reportingEvent"
+			],
+
+			"properties": {
+
+				"senderID": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 30,
+					"description": "ICEGATE ID"
+				},
+				"receiverID": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 30,
+					"description": "Port code where declared"
+				},
+				"versionNo": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 7,
+					"description": "ICEGATE version being used: Default value 1.0"
+				},
+				"indicator": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 1,
+					"description": "test (T) or production (P) indicator"
+				},
+				"messageID": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 7,
+					"description": "Default value: IECHE01"
+				},
+				"sequenceOrControlNumber": {
+					"type": "number",
+					"minimum": 1.0,
+					"maximum": 9999999.0,
+					"description": "unique value that can be used to uniquely identify the document at User End"
+				},
+				"date": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 8,
+					"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$",
+					"description": "Date of transmission of message: YYYYMMDD Format"
+				},
+
+				"time": {
+					"type": "string",
+					"pattern": "^([T])([0-1][0-9]|[2][0-3]):([0-5][0-9])$",
+					"description": "Time of transmission of message"
+				},
+				"reportingEvent": {
+					"type": "string",
+					"minOccurs": "1",
+					"description": "Default value: ES",
+					"maxLength": 4
+				}
+			}
+		},
+
+
+		"master": {
+			"type": "object",
+			"description": "Master",
+			"required": [
+				"decRef",
+				"authPrsn",
+				"vesselDtls",				
+				"prsnOnBoard", "shipStores",
+				"voyageTransportEquipment"
+			],
+			"properties": {
+				"errCD": {
+					"type": "array",
+					"description": "Error Codes",
+					"items": {
+						"type": "object",
+						"required": [
+							"pathname",
+							"errorcode",
+							"errormessage"
+						],
+						"properties": {
+							"pathname": {
+								"type": "string",
+								"description": "Path Name",
+								"minLength": 0,
+								"maxLength": 100
+							},
+							"errorcode": {
+								"type": "string",
+								"description": "Error Code",
+								"minLength": 0,
+								"maxLength": 50
+							},
+							"errormessage": {
+								"type": "string",
+								"description": "error message",
+								"minLength": 0,
+								"maxLength": 100
+							}
+						}
+					}
+				},
+				"Amend_det": {
+					"type": "array",
+					"description": "Amendment Details ",
+					"items": {
+						"type": "object",
+						"required": [
+							"AmendRefNo",
+							"AmendFlag",
+							"AmendType"
+						],
+						"properties": {
+							"AmendRefNo": {
+								"type": "string",
+								"description": "Amend Ref No ",
+								"minLength": 0,
+								"maxLength": 15
+							},
+							"AmendFlag": {
+								"type": "string",
+								"description": "Amend Flag ",
+								"minLength": 0,
+								"maxLength": 2
+							},
+							"AmendType": {
+								"type": "string",
+								"description": "Amend Type",
+								"minLength": 0,
+								"maxLength": 10
+							}
+						}
+					}
+				},
+				"decRef": {
+					"type": "object",
+					"required": [
+						"msgTyp",
+						"prtofRptng",
+						"jobNo",
+						"jobDt",
+						"rptngEvent",
+						"mnfstNoRotnNo",
+						"mnfstDtRotnDt"
+					],
+					"properties": {
+						"msgTyp": {
+							"type": "string",
+							"description": "The Flag specifying the  action requested on this transmission",
+							"minLength": 1,
+							"maxLength": 1
+						},
+						"prtofRptng": {
+							"type": "string",
+							"description": "The Custom Location of Reporting",
+							"pattern": "([I][N])([A-Z]|[0-9]){4}$",
+							"minLength": 5,
+							"maxLength": 6
+						},
+						"jobNo": {
+							"type": "number",
+							"description": "The Unique ID provided by User for this transmission",
+							"minimum": 1.0,
+							"maximum": 9999999.0
+						},
+						"jobDt": {
+							"type": "string",
+							"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$",
+							"description": "The Date of generation of of Unique ID provided by User for this transmission"
+						},
+						"rptngEvent": {
+							"type": "string",
+							"description": "The Code specifying the Reporting Event pertaining to this transmission,list of values, which will be accepted SAM,SDM,SAA,SEI,SDN",
+							"minLength": 1,
+							"maxLength": 4
+						},
+						"mnfstNoRotnNo": {
+							"type": "number",
+							"description": "The Unique ID generated by Customs for this Complaince",
+							"minimum": 1.0,
+							"maximum": 9999999.0
+						},
+						"mnfstDtRotnDt": {
+							"type": "string",
+							"description": "The Date generation of Unique ID by Customs for  this Compliance",
+							"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+						},
+						"vesselTypMvmt": {
+							"type": "string",
+							"description": "Indicator referring to Type of Vessel Movement as per SCMTR",
+							"minLength": 0,
+							"maxLength": 2
+						},
+						"dptrMnfstNo": {
+							"type": "number",
+							"description": "Reference to Previous Manifest",
+							"minimum": 1.0,
+							"maximum": 9999999.0
+						},
+						"dptrMnfstDt": {
+							"type": "string",
+							"description": "Reference to Previous Manifest ",
+							"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+						}
+					}
+				},
+				"authPrsn": {
+					"type": "object",
+					"description": "The Details of Authorised person responsible as per Customs legislation",
+					"required": [
+						"sbmtrTyp",
+						"sbmtrCd",
+						"authReprsntvCd",						
+						"authSeaCarrierCd",						
+						"trmnlOprtrCd"
+					],
+					"properties": {
+						"sbmtrTyp": {
+							"type": "string",
+							"description": "The Type of Authorised Entity submitting this Manifest",
+							"minLength": 1,
+							"maxLength": 4
+						},
+						"sbmtrCd": {
+							"type": "string",
+							"description": "The Code of Authorised Entity submitting this Manifest",
+							"minLength": 1,
+							"maxLength": 15
+						},
+						"authReprsntvCd": {
+							"type": "string",
+							"description": "PAN of Authorised Person",
+							"minLength": 1,
+							"maxLength": 10
+						},						
+						"authSeaCarrierCd": {
+							"type": "string",
+							"description": "The Registered Code of Authorised Sea Carrier ( Entity responsible for operating the Conveyance)",
+							"minLength": 1,
+							"maxLength": 10
+						},			
+						"trmnlOprtrCd": {
+							"type": "string",
+							"description": "The Code of the Terminal Custodian at the Port of Call",
+							"minLength": 1,
+							"maxLength": 10
+						}
+					}
+				},
+				"vesselDtls": {
+					"type": "object",
+					"description": "The Details of Conveyance",
+					"required": [
+						"modeOfTrnsprt",
+						"typOfTrnsprtMeans",
+						"trnsprtMeansId"						
+					],
+					"properties": {
+						"modeOfTrnsprt": {
+							"type": "string",
+							"description": "Mode of Transport used for crossing the Border/Movement,Coded",
+							"minLength": 1,
+							"maxLength": 4
+						},
+						"typOfTrnsprtMeans": {
+							"type": "string",
+							"description": "The type of identifier of the means of transport used in crossing the border/Movement, coded,default Values â€“ 10,11",
+							"minLength": 1,
+							"maxLength": 25
+						},
+						"trnsprtMeansId": {
+							"type": "string",
+							"description": "Identifier to identify the means of transport used for crossing the Border/Movement,Coded",
+							"minLength": 1,
+							"maxLength": 25
+						},
+
+						"shipTyp": {
+							"type": "string",
+							"description": "The type of the ship shown on its IMO ship's certificate.  ",
+							"minLength": 0,
+							"maxLength": 3
+						}
+					}
+				},
+				  "arvlDtls": {
+					"type": "object",
+					"description": "The Details  pertaining to Arrival/Departure",
+					"required": [ "nmbrOfPsngrs", "nmbrOfCrew", "totalNoOfCntrsLoaded", "totalNoOfCntrsLanded", "totalNoOfTrnsprtEqmtRprtdOnArvlDptr", "totalNmbrOfTrnsprtContractsRprtdOnArvlDptr", "totalNmbrOfPrsnsOnBoard" ],
+					"properties": {
+						"nmbrOfPsngrs": {
+							"type": "integer",
+							"description": "The count of persons on board the ship who are passengers as defined by SOLAS",
+							"minimum": 1.0,
+							"maximum": 9999.0
+						},
+						"nmbrOfCrew": {
+							"type": "integer",
+							"description": "The count of persons actually employed for duties on board during a voyage in the working or service of a ship and included in the crew list",
+							"minimum": 1.0,
+							"maximum": 9999.0
+						},
+						  "totalNoOfCntrsLanded": {
+							"type": "integer",
+							"description": "The Total Count of Transport Equipments Landed",
+							"minimum": 1.0,
+							"maximum": 99999.0
+						},
+						"totalNoOfCntrsLoaded": {
+							"type": "number",
+							"description": "The Total Count of Transport Equipments Loaded",
+							"minimum": 1.0,
+							"maximum": 99999.0
+						},
+						"totalNmbrOfPrsnsOnBoard": {
+							"type": "number",
+							"description": "The total number of persons on board the ship including crew and passengers",
+							"minimum": 1.0,
+							"maximum": 9999.0
+						},
+						"totalNoOfTrnsprtEqmtRprtdOnArvlDptr": {
+							"type": "number",
+							"description": "The Count of Transport Equipment reported on the arrival/Departure",
+							"minimum": 1.0,
+							"maximum": 99999.0
+						},
+						"totalNmbrOfTrnsprtContractsRprtdOnArvlDptr": {
+							"type": "number",
+							"description": "The Count of Transport Contracts Manifested on the arrival/Departure",
+							"minimum": 1.0,
+							"maximum": 99999.0
+						}
+					}
+				},
+				"tmSuprtDocs": {
+					"type": "array",
+					"description": "The Details of Supporting Documents provided in reference to the cargo in Transport Document",
+					"items": {
+						"type": "object",
+						"required": [
+							"tagRef",
+							"refSerialNo",
+							"subSerialNoRef",
+							"icegateUserid",
+							"irnNmbr",
+							"docRefNmbr",
+							"docTypCd",
+							"bnefcryCd"
+						],
+						"properties": {
+							"tagRef": {
+								"type": "string",
+								"description": "The Flag indicating the part of the declaration to which this document is referenced",
+								"minLength": 1,
+								"maxLength": 5
+							},
+							"refSerialNo": {
+								"type": "string",
+								"description": "The Serial number in that part of the declaration to which this document is referenced",
+								"minimum": 1.0,
+								"maximum": 5.0
+							},
+							"subSerialNoRef": {
+								"type": "string",
+								"description": "The Sub Serial Number in that part of the declaration to which this document is referenced",
+								"minimum": 1.0,
+								"maximum": 5.0
+							},
+							"icegateUserid": {
+								"type": "string",
+								"description": "The ICEGATE ID of the User who uploaded this document",
+								"minLength": 1,
+								"maxLength": 15
+							},
+							"irnNmbr": {
+								"type": "string",
+								"description": "The Unique Reference Number given by eSanchit on uploading of this document",
+								"minimum": 1.0,
+								"maximum": 14.0
+							},
+							"docRefNmbr": {
+								"type": "string",
+								"description": "The Unique Reference Number given by the Issuer to this document",
+								"minimum": 1.0,
+								"maximum": 17.0
+							},
+							"docTypCd": {
+								"type": "string",
+								"description": "The Identifier assigned by Customs to identify the type of the document",
+								"minLength": 1,
+								"maxLength": 6
+							},
+							"bnefcryCd": {
+								"type": "string",
+								"description": "The Idenfier of the Beneficiary of this Document",
+								"minLength": 1,
+								"maxLength": 35
+							}
+						}
+					}
+				},
+				"tmAdtnlDec": {
+					"type": "array",
+					"description": "The Details of Additional Declaration provided in reference to this Voyage",
+					"items": {
+						"type": "object",
+						"required": [ "refSerialNo", "tagRef", "infoTyp", "infoQualifier" ],
+						"properties": {
+							"tagRef": {
+								"type": "string",
+								"description": "The Flag indicating the part of the declaration to which this document is referenced",
+								"minLength": 1,
+								"maxLength": 5
+							},
+							"refSerialNo": {
+								"type": "number",
+								"description": "The Serial number in that part of the declaration to which this document is referenced",
+								"minimum": 0.0,
+								"maximum": 99999.0
+							},
+							  "infoTyp": {
+								"type": "string",
+								"description": "The code indicating the type of Additional Declaration being made",
+								"minLength": 1,
+								"maxLength": 10
+							},
+							"infoQualifier": {
+								"type": "string",
+								"description": "The Code indicating the additional declaration being made",
+								"minLength": 1,
+								"maxLength": 10
+							},
+							"infoCd": {
+								"type": "string",
+								"description": "The Response to the additional declaration as a Code",
+								"minLength": 0,
+								"maxLength": 35
+							},
+							"infoText": {
+								"type": "string",
+								"description": "The Response to the additional declaration as a Text",
+								"minLength": 0,
+								"maxLength": 100
+							},
+							"infoMsr": {
+								"type": "string",
+								"description": "The Response to Additional Declaration as a measure",
+								"minLength": 0,
+								"maxLength": 5
+							},
+							"infoDt": {
+								"type": "string",
+								"description": "The Response to Additional Declaration as a date",
+								"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])[T]([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

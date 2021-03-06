@@ -34,7 +34,9 @@ public class Dashboard extends javax.swing.JFrame {
         DepartureManifestManagement = new javax.swing.JButton();
         DepartureNotification = new javax.swing.JButton();
         UsernameDisplay = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        dashboardlabel = new javax.swing.JLabel();
+        SeaEntryInward = new javax.swing.JButton();
+        UploadButton = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -61,7 +63,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        DepartureManifestManagement.setText("Departure Manifest Management");
+        DepartureManifestManagement.setText("Departure Manifest Ammendment");
         DepartureManifestManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DepartureManifestManagementActionPerformed(evt);
@@ -77,49 +79,73 @@ public class Dashboard extends javax.swing.JFrame {
 
         UsernameDisplay.setText("Username");
 
-        jLabel1.setText("DASHBOARD");
+        dashboardlabel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        dashboardlabel.setText("DASHBOARD");
+
+        SeaEntryInward.setText("Sea Entry Inward");
+        SeaEntryInward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeaEntryInwardActionPerformed(evt);
+            }
+        });
+
+        UploadButton.setText("Upload File");
+        UploadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UploadButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DepartureNotification)
-                    .addComponent(DepartureManifestManagement)
-                    .addComponent(DepartureManifest)
-                    .addComponent(ArrivalManifestAmmendment)
-                    .addComponent(NewArrivalManifest))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                .addGap(227, 227, 227)
-                .addComponent(UsernameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(dashboardlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(97, 97, 97)
+                        .addComponent(UsernameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(165, 165, 165))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NewArrivalManifest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DepartureManifest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DepartureNotification, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ArrivalManifestAmmendment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DepartureManifestManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SeaEntryInward, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(66, 66, 66))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(UploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dashboardlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsernameDisplay))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ArrivalManifestAmmendment)
+                    .addComponent(NewArrivalManifest))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(UsernameDisplay))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
-                .addComponent(NewArrivalManifest)
+                    .addComponent(DepartureManifestManagement)
+                    .addComponent(DepartureManifest))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DepartureNotification)
+                    .addComponent(SeaEntryInward))
                 .addGap(18, 18, 18)
-                .addComponent(ArrivalManifestAmmendment)
-                .addGap(18, 18, 18)
-                .addComponent(DepartureManifest)
-                .addGap(18, 18, 18)
-                .addComponent(DepartureManifestManagement)
-                .addGap(18, 18, 18)
-                .addComponent(DepartureNotification)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addComponent(UploadButton)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,11 +154,13 @@ public class Dashboard extends javax.swing.JFrame {
     private void ArrivalManifestAmmendmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArrivalManifestAmmendmentActionPerformed
         // TODO add your handling code here:
         System.out.println("Arrival manifest ammendment clicked");
+        new ArrivalManifestAmmendment().setVisible(true);
     }//GEN-LAST:event_ArrivalManifestAmmendmentActionPerformed
 
     private void DepartureNotificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartureNotificationActionPerformed
         // TODO add your handling code here:
         System.out.println("Departure Notification clicked");
+        new DepartureNotification().setVisible(true);
     }//GEN-LAST:event_DepartureNotificationActionPerformed
 
     private void NewArrivalManifestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewArrivalManifestActionPerformed
@@ -152,6 +180,19 @@ public class Dashboard extends javax.swing.JFrame {
         System.out.println("Departure manifest clicked");
         new DepartureManifest().setVisible(true);
     }//GEN-LAST:event_DepartureManifestActionPerformed
+
+    private void UploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Upload UI Clicked");
+        new uploadUI().setVisible(true);
+        
+    }//GEN-LAST:event_UploadButtonActionPerformed
+
+    private void SeaEntryInwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaEntryInwardActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Entry Inward clicked");
+        new EntryInward().setVisible(true);
+    }//GEN-LAST:event_SeaEntryInwardActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,8 +235,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton DepartureManifestManagement;
     private javax.swing.JButton DepartureNotification;
     private javax.swing.JButton NewArrivalManifest;
+    private javax.swing.JButton SeaEntryInward;
+    private javax.swing.JButton UploadButton;
     private javax.swing.JLabel UsernameDisplay;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel dashboardlabel;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
