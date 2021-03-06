@@ -1226,77 +1226,77 @@
 											}
 										},
 										"prevRef": {
-											"type": "object",
-											"description": "The Details of Reference to declaration filed earlier for this cargo",
-											"properties": {
-												"cinTyp": {
-													"type": "string",
-													"description": "The Type of Cargo Identification Number given by Customs for referenced Cargo",
-													"minLength": 0,
-													"maxLength": 4
-												},
-												"mcinPcin": {
-													"type": "string",
-													"description": "The unique Identifier issued by Customs for Transport Contract issued by Main line operator- Master Cargo Identification Number",
-													"minLength": 0,
-													"maxLength": 20
-												},
-												"csnSbmtdTyp": {
-													"type": "string",
-													"description": "The Type of Authorised Entity who filed CSN",
-													"minLength": 0,
-													"maxLength": 4
-												},
-												"csnSbmtdBy": {
-													"type": "string",
-													"description": "The Code of Authorised Entity who filed CSN",
-													"minLength": 0,
-													"maxLength": 20
-												},
-												"csnRptngTyp": {
-													"type": "string",
-													"description": "The reporting Type of referenced CSN",
-													"minLength": 0,
-													"maxLength": 4
-												},
-												"csnSiteId": {
-													"type": "string",
-													"description": "The Custom Location of Reporting",
-													"minLength": 0,
-													"maxLength": 6
-												},
-												"csnNmbr": {
-													"type": "number",
-													"description": "The Identifier number of referenced CSN",
-													"minimum": 0.0,
-													"maximum": 9999999.0
-												},
-												"csnDt": {
-													"type": "string",
-													"description": "The identifier date of referenced CSN",
-													"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
-												},
-
-												"splitIndctr": {
-													"type": "string",
-													"description": "The Code to indicate carriage of Split Consignment",
-													"minLength": 0,
-													"maxLength": 2
-												},
-												"nmbrOfPkgs": {
-													"type": "number",
-													"description": "The measure of packages being carried in the voyage for particular transport contract",
-													"minimum": 0.000000,
-													"maximum": 99999999.0
-												},
-												"typOfPackage": {
-													"type": "string",
-													"description": "The type of packages referenced as being carried in the voyage for particular Transport Contract",
-													"minLength": 0,
-													"maxLength": 4
-												}
-											}
-										},
+								"type": "object",
+								"description": "The Details of Reference to declaration filed earlier for this cargo",
+								"properties": {
+									"cinTyp": {
+										"type": "string",
+										"description": "The Type of Cargo Identification Number given by Customs for referenced Cargo",
+										"minLength": 0,
+										"maxLength": 4
+									},
+									"mcinPcin": {
+										"type": "string",
+										"description": "The unique Identifier issued by Customs for Transport Contract issued by Main line operator- Master Cargo Identification Number",
+										"minLength": 0,
+										"maxLength": 20
+									},
+									"csnSbmtdTyp": {
+										"type": "string",
+										"description": "The Type of Authorised Entity who filed CSN",
+										"minLength": 0,
+										"maxLength": 4
+									},
+									"csnSbmtdBy": {
+										"type": "string",
+										"description": "The Code of Authorised Entity who filed CSN",
+										"minLength": 0,
+										"maxLength": 20
+									},
+									"csnRptngTyp": {
+										"type": "string",
+										"description": "The reporting Type of referenced CSN",
+										"minLength": 0,
+										"maxLength": 4
+									},
+									"csnSiteId": {
+										"type": "string",
+										"description": "The Custom Location of Reporting",
+										"minLength": 0,
+										"maxLength": 6
+									},
+									"csnNmbr": {
+										"type": "number",
+										"description": "The Identifier number of referenced CSN",
+										"minimum": 0.0,
+										"maximum": 9999999.0
+									},
+									"csnDt": {
+										"type": "string",
+										"description": "The identifier date of referenced CSN",
+										"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+									},
+									
+									"splitIndctr": {
+										"type": "string",
+										"description": "The Code to indicate carriage of Split Consignment",
+										"minLength": 0,
+										"maxLength": 2
+									},
+									"nmbrOfPkgs": {
+										"type": "number",
+										"description": "The measure of packages being carried in the voyage for particular transport contract",
+										"minimum": 0.000000,
+										"maximum": 99999999.0
+									},
+									"typOfPackage": {
+										"type": "string",
+										"description": "The type of packages referenced as being carried in the voyage for particular Transport Contract",
+										"minLength": 0,
+										"maxLength": 4
+									}
+								}
+							},
 										"locCstm": {
 											"type": "object",
 											"description": "The Details of locations relevant for this House Transport Document ",
@@ -2576,29 +2576,6 @@
 							}
 						}
 					}
-				}
-			}
-		},
-		"digSign": {
-			"type": "object",
-			"description": "digi Sign",
-			"required": [
-				"startSignature",
-				"startCertificate",
-				"signerVersion"
-			],
-			"properties": {
-				"startSignature": {
-					"type": "string",
-					"description": "Start Signature"
-				},
-				"startCertificate": {
-					"type": "string",
-					"description": "Start Certificate"
-				},
-				"signerVersion": {
-					"type": "string",
-					"description": "Signer Version"
 				}
 			}
 		}
