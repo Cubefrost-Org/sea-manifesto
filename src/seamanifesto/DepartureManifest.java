@@ -32,7 +32,7 @@ public class DepartureManifest extends javax.swing.JFrame {
         
         try {
             Object obj = jparser.parse(new FileReader(
-                    getClass().getResource("/schemas/SDM.json").getFile()));
+                    getClass().getResource("/schemas/SAM.json").getFile()));
             
             this.samSchema = (JSONObject) obj;
 
