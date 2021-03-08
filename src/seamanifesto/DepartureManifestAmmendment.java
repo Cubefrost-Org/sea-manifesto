@@ -32,8 +32,7 @@ public class DepartureManifestAmmendment extends javax.swing.JFrame {
         JSONParser jparser = new JSONParser();
         
         try {
-            Object obj = jparser.parse(new FileReader(
-                    getClass().getResource("/schemas/SDA.json").getFile()));
+            Object obj = jparser.parse(new FileReader("lib/SDA.json"));
             
             this.samSchema = (JSONObject) obj;
 

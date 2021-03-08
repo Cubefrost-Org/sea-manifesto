@@ -39,9 +39,7 @@ public class DepartureManifest extends javax.swing.JFrame {
         JSONParser jparser = new JSONParser();
         
         try {
-            Object obj = jparser.parse(new FileReader(
-
-                    getClass().getResource("/schemas/SDM.json").getFile()));
+            Object obj = jparser.parse(new FileReader("lib/SDM.json"));
 
             this.samSchema = (JSONObject) obj;
             this.entries = new ArrayList<JTextField>();

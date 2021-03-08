@@ -31,8 +31,7 @@ public class EntryInward extends javax.swing.JFrame {
         JSONParser jparser = new JSONParser();
         
         try {
-            Object obj = jparser.parse(new FileReader(
-                    getClass().getResource("/schemas/SEI.json").getFile()));
+            Object obj = jparser.parse(new FileReader("lib/SEI.json"));
             
             this.samSchema = (JSONObject) obj;
 

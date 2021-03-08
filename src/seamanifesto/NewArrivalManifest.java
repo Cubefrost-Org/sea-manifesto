@@ -39,8 +39,7 @@ public class NewArrivalManifest extends javax.swing.JFrame {
         JSONParser jparser = new JSONParser();
         
         try {
-            Object obj = jparser.parse(new FileReader(
-                    getClass().getResource("/schemas/SAM.json").getFile()));
+            Object obj = jparser.parse(new FileReader("lib/SAM.json"));
             
             this.samSchema = (JSONObject) obj;
             this.entries = new ArrayList<JTextField>();
