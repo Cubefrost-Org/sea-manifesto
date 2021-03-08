@@ -7,6 +7,9 @@ package seamanifesto;
 import java.awt.GridLayout;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +26,10 @@ import org.json.simple.parser.ParseException;
  */
 public class DepartureManifest extends javax.swing.JFrame {
 
+    ArrayList<JTextField> entries;
+    ArrayList<String> labels;
+    ArrayList<JSlider> sliders;
+    
     /**
      * Creates new form NewArrivalManifest
      */
@@ -36,6 +43,9 @@ public class DepartureManifest extends javax.swing.JFrame {
                     getClass().getResource("/schemas/SDM.json").getFile()));
 
             this.samSchema = (JSONObject) obj;
+            this.entries = new ArrayList<JTextField>();
+            this.labels = new ArrayList<String>();
+            this.sliders = new ArrayList<JSlider>();
 
         } catch (IOException | ParseException e) {
         }
@@ -80,24 +90,32 @@ public class DepartureManifest extends javax.swing.JFrame {
             
             JLabel name = new JLabel(key);
             name.setToolTipText(getDesc((JSONObject) groupProps.get(key)));
-
+            this.labels.add(key);
+            
             field.add(name);
 
             if(getType((JSONObject) groupProps.get(key)).equals("string")){
                 JTextField entry = new JTextField();
                 entry.setAlignmentX(RIGHT_ALIGNMENT);
                 field.add(entry);
+                this.entries.add(entry);
             }
 
             if(getType((JSONObject) groupProps.get(key)).equals("number")){
                 
                 double[] range = getRange((JSONObject) groupProps.get(key));
                 
+                this.entries.add(null);
+                
                 JPanel comboPanel = new JPanel(new GridLayout(1, 2));
+                
+                if((int)range[1] == 2147483647)
+                    range[1] = 99999999;
                 
                 JSlider slider = new JSlider((int)range[0], (int)range[1]);
                 slider.setPaintLabels(true);
                 slider.setAlignmentX(CENTER_ALIGNMENT);
+                this.sliders.add(slider);
                 
                 JLabel val = new JLabel("0");
                 val.setAlignmentX(CENTER_ALIGNMENT);
@@ -234,6 +252,12 @@ public class DepartureManifest extends javax.swing.JFrame {
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
         // TODO add your handling code here:
+        FileManager fm = new FileManager();
+        try {
+            fm.saveFile(this.entries, this.labels, this.sliders);
+        } catch (IOException ex) {
+           
+        }
     }//GEN-LAST:event_continueButtonActionPerformed
 
     /**
