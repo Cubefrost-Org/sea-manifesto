@@ -94,9 +94,11 @@ public class DepartureManifestAmmendment extends javax.swing.JFrame {
                 
                 JPanel comboPanel = new JPanel(new GridLayout(1, 2));
                 
+
                 if((int)range[1] == 2147483647)
                     range[1] = 99999999;
                 
+
                 JSlider slider = new JSlider((int)range[0], (int)range[1]);
                 slider.setPaintLabels(true);
                 slider.setAlignmentX(CENTER_ALIGNMENT);
