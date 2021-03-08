@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         unameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login_Soham_Biswas_32");
+        setTitle("Login");
         setBackground(new java.awt.Color(102, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(176, 246, 255));

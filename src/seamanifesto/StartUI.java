@@ -69,7 +69,7 @@ public class StartUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
         jLabel2.setText("Cubefrost-Org/sea-manifesto");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(530, 30, 190, 20);
+        jLabel2.setBounds(470, 30, 230, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         jLabel1.setToolTipText("");
@@ -85,13 +85,14 @@ public class StartUI extends javax.swing.JFrame {
         jLabel3.setBounds(-10, 10, 270, 110);
 
         version.setFont(new java.awt.Font("Bahnschrift", 0, 12)); // NOI18N
-        version.setText("Version 0.1");
+        version.setText("Version 1.0");
         jPanel1.add(version);
-        version.setBounds(640, 50, 70, 20);
+        version.setBounds(610, 50, 70, 20);
+        version.getAccessibleContext().setAccessibleName("Version 1.0");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/github logo.jpg"))); // NOI18N
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(490, 20, 30, 40);
+        jLabel6.setBounds(430, 20, 30, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
