@@ -15,13 +15,13 @@ Application for Ship Agents from all over India to record ship details and ammen
 
 ## Task List:
 - [x] Entity + Control Classes, Unit Tests 
-- [ ] Entity + Control, integrated with Boundary/Swing Classes 
-- [ ] Integration of all use cases
-- [ ] System Testing 
-- [ ] Release 0.1 
-- [ ] Bug Fixes 
-- [ ] Release 1.0 
-- [ ] Product Demo 
-- [ ] Process Audit 
-- [ ] Project Closure 
+- [x] Entity + Control, integrated with Boundary/Swing Classes 
+- [x] Integration of all use cases
+- [x] System Testing 
+- [x] Release 0.1 
+- [x] Bug Fixes 
+- [x] Release 1.0 
+- [x] Product Demo 
+- [x] Process Audit 
+- [x] Project Closure 
 
