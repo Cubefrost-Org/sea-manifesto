@@ -7,9 +7,14 @@ package seamanifesto;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import seamanifesto.Data_SelectionUI;
 
 /**
  *
@@ -33,6 +38,41 @@ public class FileManager {
 //        this.exportfile(samobj, null);
     }
 
+    public void selectFile(){
+        new Data_SelectionUI().setVisible(true);
+    }
+    
+    public void saveFile(ArrayList<JTextField> entries,
+            ArrayList<String> labels, ArrayList<JSlider> sliders) throws IOException{
+        
+        int entryIndex = 0, sliderIndex = 0;
+        JSONObject obj = new JSONObject();
+        
+        for(int labelIndex = 0; labelIndex < labels.size(); labelIndex++){
+            String label = labels.get(labelIndex);
+            String entry = entries.get(entryIndex).getText();
+            
+            if(entry == null){
+                int slider = sliders.get(sliderIndex).getValue();
+                obj.put(label, slider);
+                sliderIndex += 1;
+            }
+            else{
+                obj.put(label, entry);
+                entryIndex += 1;
+            }
+            
+        }
+        
+        File file = new File("ArrivalManifest.json");
+        FileWriter writer = new FileWriter(file);
+        writer.write(obj.toJSONString());
+        writer.flush();
+        writer.close();
+        
+    }
+    
+    
     public void exportfile(Form obj, String path) {
         String jsonstring = obj.getData();
 //String jsonstring="";
