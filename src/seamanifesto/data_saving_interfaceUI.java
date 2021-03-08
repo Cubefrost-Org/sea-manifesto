@@ -1,9 +1,11 @@
+package seamanifesto;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seamanifesto;
+
 
 import java.awt.*;  
 import java.awt.event.*;  
@@ -15,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author alex
  */
-public class data_save_interface extends javax.swing.JFrame {
+public class data_saving_interfaceUI extends javax.swing.JFrame {
 
     /**
      * Creates new form data_save_interface
      */
-    public data_save_interface() {
+    public data_saving_interfaceUI() {
         initComponents();
     }
 
@@ -56,7 +58,7 @@ public class data_save_interface extends javax.swing.JFrame {
         alert_user = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         getpath = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        selectpath = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Data Saving Interface_Subhradip Debnath_A_19");
@@ -121,10 +123,10 @@ public class data_save_interface extends javax.swing.JFrame {
 
         jLabel16.setText("PATH :");
 
-        jButton4.setText("SELECT PATH");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        selectpath.setText("SELECT PATH");
+        selectpath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                selectpathActionPerformed(evt);
             }
         });
 
@@ -171,7 +173,7 @@ public class data_save_interface extends javax.swing.JFrame {
                                 .addGap(4, 4, 4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(selectpath, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
@@ -232,7 +234,7 @@ public class data_save_interface extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(getpath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel16)
-                                    .addComponent(jButton4))))
+                                    .addComponent(selectpath))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -247,7 +249,6 @@ public class data_save_interface extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(alert_user, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -275,7 +276,7 @@ public class data_save_interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void selectpathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectpathActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.showOpenDialog(null);
@@ -283,7 +284,7 @@ public class data_save_interface extends javax.swing.JFrame {
         String filepath=f.getAbsolutePath();
         getpath.setText(filepath);
         JOptionPane.showMessageDialog(rootPane, "File name "+f.getName());
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_selectpathActionPerformed
 
     private void jobidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobidActionPerformed
         // TODO add your handling code here:
@@ -310,21 +311,27 @@ public class data_save_interface extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(data_save_interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(data_saving_interfaceUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(data_save_interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(data_saving_interfaceUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(data_save_interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(data_saving_interfaceUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(data_save_interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(data_saving_interfaceUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new data_save_interface().setVisible(true);
+                new data_saving_interfaceUI().setVisible(true);
             }
         });
     }
@@ -336,7 +343,6 @@ public class data_save_interface extends javax.swing.JFrame {
     private javax.swing.JTextField getpath;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -353,6 +359,7 @@ public class data_save_interface extends javax.swing.JFrame {
     private javax.swing.JTextField msgid;
     private javax.swing.JTextField msgtype;
     private javax.swing.JTextField reportingevent;
+    private javax.swing.JButton selectpath;
     private javax.swing.JTextField senderid;
     // End of variables declaration//GEN-END:variables
 }
