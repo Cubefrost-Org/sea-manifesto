@@ -7,7 +7,7 @@ package seamanifesto;
 import seamanifesto.FormManager;
 /**
  *
- * @author TAMOJIT
+ * @author alex
  */
 public class Dashboard extends javax.swing.JFrame {
     FormManager formManager;

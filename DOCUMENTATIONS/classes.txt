@@ -1,28 +1,28 @@
 |
-|Master Manager (Manager Class)
+|Master Manager 
 |
 |\
-| User Manager (Manager Class)
+| User Manager
 |   \
-|   Login.form, Login.java, Signup.form. Signup.java, Wrong password.form, Wrong password.java (Boundary Class)
+|   Login.form, Login.java, Signup.form. Signup.java, Wrong password.form, Wrong password.java 
 |\
-| Dashboard UI.form, Dashboard UI.java (Boundary Class)
+| Dashboard UI.form, Dashboard UI.java 
 |
 |\
-| Preferences.form, Preferences.java (Boundary Class)
+| Preferences.form, Preferences.java 
 |
 |\
-| Form.java  (Entity Class)
+| Form.java 
 |
 |\
-| User.java (Control Class)
+| User.java 
 |
 |\
-| Form Manager (Manager Class)
+| Form Manager
 |   \
-|   SAMUI.form, SAMUI.java, SAAUI.form, SAAUI.java, SDMUI.form, SDMUI.java,SDNUI.form, SDN.java, SEIUI.form, SEIUI.java, SDAUI.form, SDAUI.java (Boundary Class)
+|   SAMUI.form, SAMUI.java, SAAUI.form, SAAUI.java, SDMUI.form, SDMUI.java,SDNUI.form, SDN.java, SEIUI.form, SEIUI.java, SDAUI.form, SDAUI.java
 |
 |\
 | File Manager (Manager Class)
 |   \
-|   UploadUI.form, UploadUI.java, Upload.java, Data Saving Interface UI.form, Data Saving Interface UI.java, Data Saving.java, Data Selection UI.form, Data Selection UI.java, Data Selection.java, Data Export.java (Boundary Class)
+|   UploadUI.form, UploadUI.java, Upload.java, Data Saving Interface UI.form, Data Saving Interface UI.java, Data Saving.java, Data Selection UI.form, Data Selection UI.java, Data Selection.java, Data Export.java

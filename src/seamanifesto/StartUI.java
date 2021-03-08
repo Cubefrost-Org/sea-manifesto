@@ -7,7 +7,7 @@ package seamanifesto;
  */
 /**
  *
- * @author Kaustav
+ * @author alex
  */
 public class StartUI extends javax.swing.JFrame {
 
