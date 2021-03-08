@@ -31,7 +31,6 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -48,8 +47,6 @@
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="ArrivalManifestAmmendment" alignment="0" max="32767" attributes="0"/>
                           <Component id="DepartureManifestManagement" max="32767" attributes="0"/>
@@ -57,7 +54,6 @@
                       </Group>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   </Group>
-
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                       <Component id="UsernameDisplay" min="-2" pref="144" max="-2" attributes="0"/>
@@ -67,7 +63,6 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
-
               <Component id="UploadButton" min="-2" pref="264" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
@@ -86,28 +81,9 @@
                   <Component id="ArrivalManifestAmmendment" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="NewArrivalManifest" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="dashboardlabel" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                          <Component id="UsernameDisplay" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ArrivalManifestAmmendment" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="NewArrivalManifest" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="-2147483648" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="DepartureManifestManagement" min="-2" max="-2" attributes="0"/>
                   <Component id="DepartureManifest" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -120,7 +96,6 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="UploadButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-
           </Group>
       </Group>
     </DimensionLayout>
@@ -172,7 +147,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="dashboardlabel">
-
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="36" style="1"/>
@@ -201,10 +175,9 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/images/logo.png"/>
         </Property>
-
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="SeaEntryInward">
+    <Component class="javax.swing.JButton" name="SeaEntryInward1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sea Entry Inward"/>
       </Properties>
@@ -212,7 +185,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeaEntryInwardActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="UploadButton">
+    <Component class="javax.swing.JButton" name="UploadButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Upload File"/>
       </Properties>
