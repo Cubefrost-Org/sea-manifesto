@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
 import org.json.simple.JSONObject;
@@ -50,17 +51,18 @@ public class FileManager {
         
         for(int labelIndex = 0; labelIndex < labels.size(); labelIndex++){
             String label = labels.get(labelIndex);
-            String entry = entries.get(entryIndex).getText();
+                String entry = entries.get(entryIndex).getText();
             
-            if(entry == null){
-                int slider = sliders.get(sliderIndex).getValue();
-                obj.put(label, slider);
-                sliderIndex += 1;
-            }
-            else{
-                obj.put(label, entry);
-                entryIndex += 1;
-            }
+                if(entry == null){
+                    int slider = sliders.get(sliderIndex).getValue();
+                    obj.put(label, slider);
+                    sliderIndex += 1;
+                }
+                else{
+                    obj.put(label, entry);
+                    entryIndex += 1;
+                }
+                       
             
         }
         

@@ -12,6 +12,7 @@ import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JSlider;
@@ -256,7 +257,7 @@ public class DepartureManifest extends javax.swing.JFrame {
         try {
             fm.saveFile(this.entries, this.labels, this.sliders);
         } catch (IOException ex) {
-           
+           JOptionPane.showMessageDialog(this, "Please fill up all the entries", "Human fault", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_continueButtonActionPerformed
 

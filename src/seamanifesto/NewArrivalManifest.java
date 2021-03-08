@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JSlider;
@@ -97,6 +98,7 @@ public class NewArrivalManifest extends javax.swing.JFrame {
                 JTextField entry = new JTextField();
                 entry.setAlignmentX(RIGHT_ALIGNMENT);
                 field.add(entry);
+                entry.setText("0");
                 this.entries.add(entry);
             }
 
@@ -252,8 +254,9 @@ public class NewArrivalManifest extends javax.swing.JFrame {
         FileManager fm = new FileManager();
         try {
             fm.saveFile(this.entries, this.labels, this.sliders);
-        } catch (IOException ex) {
-            Logger.getLogger(NewArrivalManifest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            //Logger.getLogger(NewArrivalManifest.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Please fill up all the entries", "Human fault", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_continueButtonActionPerformed
 

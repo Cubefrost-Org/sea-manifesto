@@ -6,6 +6,8 @@
 package seamanifesto;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static seamanifesto.LoginManager.Check;
 import static seamanifesto.LoginManager.Create;
@@ -212,6 +214,7 @@ public class Login extends javax.swing.JFrame {
                 System.out.println("Welcome " + username);
                 JOptionPane.showMessageDialog(this, "Welcome " + username + "!");
                 UserManager.USER=username;
+                new Dashboard().setVisible(true);
                 this.dispose();
             }
             else{

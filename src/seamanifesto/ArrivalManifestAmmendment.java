@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JSlider;
@@ -85,6 +86,7 @@ public class ArrivalManifestAmmendment extends javax.swing.JFrame {
             if(getType((JSONObject) groupProps.get(key)).equals("string")){
                 JTextField entry = new JTextField();
                 entry.setAlignmentX(RIGHT_ALIGNMENT);
+                entry.setText("0");
                 field.add(entry);
             }
 
@@ -238,6 +240,7 @@ public class ArrivalManifestAmmendment extends javax.swing.JFrame {
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Please fill up all the entries", "Human fault", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_continueButtonActionPerformed
 
     /**
