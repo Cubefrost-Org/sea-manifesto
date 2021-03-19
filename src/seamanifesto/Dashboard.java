@@ -37,7 +37,9 @@ public class Dashboard extends javax.swing.JFrame {
         dashboardlabel = new javax.swing.JLabel();
         SeaEntryInward = new javax.swing.JButton();
         UploadButton = new javax.swing.JButton();
+
         jLabel1 = new javax.swing.JLabel();
+
 
         jTextField1.setText("jTextField1");
 
@@ -81,7 +83,9 @@ public class Dashboard extends javax.swing.JFrame {
         UsernameDisplay.setText("Username");
 
         dashboardlabel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+
         dashboardlabel.setText("SEA MANIFESTO");
+
 
         SeaEntryInward.setText("Sea Entry Inward");
         SeaEntryInward.addActionListener(new java.awt.event.ActionListener() {
@@ -97,13 +101,16 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -117,11 +124,13 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ArrivalManifestAmmendment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DepartureManifestManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(SeaEntryInward, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
                         .addGap(66, 66, 66))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(87, 87, 87)
@@ -129,13 +138,24 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(165, 165, 165))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(248, 248, 248)
+
                 .addComponent(UploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dashboardlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsernameDisplay))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ArrivalManifestAmmendment)
+                    .addComponent(NewArrivalManifest))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -151,6 +171,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(NewArrivalManifest))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
                     .addComponent(DepartureManifestManagement)
                     .addComponent(DepartureManifest))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -159,7 +180,9 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(SeaEntryInward))
                 .addGap(18, 18, 18)
                 .addComponent(UploadButton)
+
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
         );
 
         pack();
@@ -253,7 +276,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton UploadButton;
     private javax.swing.JLabel UsernameDisplay;
     private javax.swing.JLabel dashboardlabel;
+
     private javax.swing.JLabel jLabel1;
+
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
