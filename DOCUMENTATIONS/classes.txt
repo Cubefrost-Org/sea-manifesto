@@ -12,7 +12,7 @@
 | Preferences.form, Preferences.java (Boundary Class)
 |
 |\
-| SAM.java, SAA.java, SDM.java, SDN.java, SDA.java, SEI.java, Form.java  (Entity Class)
+| Form.java  (Entity Class)
 |
 |\
 | User.java (Control Class)

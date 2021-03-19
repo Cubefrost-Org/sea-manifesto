@@ -191,7 +191,9 @@ public class ArrivalManifestAmmendment extends javax.swing.JFrame {
         });
 
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("New Arrival Manifest");
+
+        titleLabel.setText("Arrival Manifest Ammendment");
+
         titleLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         titleLabel.setFocusable(false);
 
