@@ -4,18 +4,19 @@
  * and open the template in the editor.
  */
 package seamanifesto;
-
+import seamanifesto.FormManager;
 /**
  *
  * @author TAMOJIT
  */
 public class Dashboard extends javax.swing.JFrame {
-
+    FormManager formManager;
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
         initComponents();
+        formManager = new FormManager();
     }
 
     /**
@@ -37,9 +38,9 @@ public class Dashboard extends javax.swing.JFrame {
         dashboardlabel = new javax.swing.JLabel();
         SeaEntryInward = new javax.swing.JButton();
         UploadButton = new javax.swing.JButton();
-
         jLabel1 = new javax.swing.JLabel();
-
+        SeaEntryInward1 = new javax.swing.JButton();
+        UploadButton1 = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -83,9 +84,7 @@ public class Dashboard extends javax.swing.JFrame {
         UsernameDisplay.setText("Username");
 
         dashboardlabel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-
         dashboardlabel.setText("SEA MANIFESTO");
-
 
         SeaEntryInward.setText("Sea Entry Inward");
         SeaEntryInward.addActionListener(new java.awt.event.ActionListener() {
@@ -101,16 +100,27 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
 
+        SeaEntryInward1.setText("Sea Entry Inward");
+        SeaEntryInward1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeaEntryInwardActionPerformed(evt);
+            }
+        });
+
+        UploadButton1.setText("Upload File");
+        UploadButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UploadButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -124,13 +134,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ArrivalManifestAmmendment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DepartureManifestManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(SeaEntryInward, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-
                         .addGap(66, 66, 66))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(87, 87, 87)
@@ -138,7 +145,6 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(165, 165, 165))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(248, 248, 248)
-
                 .addComponent(UploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -153,25 +159,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ArrivalManifestAmmendment)
                     .addComponent(NewArrivalManifest))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dashboardlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UsernameDisplay))
-                        .addGap(26, 26, 26))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ArrivalManifestAmmendment)
-                    .addComponent(NewArrivalManifest))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
                     .addComponent(DepartureManifestManagement)
                     .addComponent(DepartureManifest))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -180,9 +171,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(SeaEntryInward))
                 .addGap(18, 18, 18)
                 .addComponent(UploadButton)
-
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-
         );
 
         pack();
@@ -191,31 +180,31 @@ public class Dashboard extends javax.swing.JFrame {
     private void ArrivalManifestAmmendmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArrivalManifestAmmendmentActionPerformed
         // TODO add your handling code here:
         System.out.println("Arrival manifest ammendment clicked");
-        new ArrivalManifestAmmendment().setVisible(true);
+        formManager.ammendArrivalManifest();
     }//GEN-LAST:event_ArrivalManifestAmmendmentActionPerformed
 
     private void DepartureNotificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartureNotificationActionPerformed
         // TODO add your handling code here:
         System.out.println("Departure Notification clicked");
-        new DepartureNotification().setVisible(true);
+        formManager.createNotification();
     }//GEN-LAST:event_DepartureNotificationActionPerformed
 
     private void NewArrivalManifestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewArrivalManifestActionPerformed
         // TODO add your handling code here:
         System.out.println("Arrival manifest clicked");
-        new NewArrivalManifest().setVisible(true);
+        formManager.createArrivalManifest();
     }//GEN-LAST:event_NewArrivalManifestActionPerformed
 
     private void DepartureManifestManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartureManifestManagementActionPerformed
         // TODO add your handling code here:
         System.out.println("Departure manifest management clicked");
-        new DepartureManifestAmmendment().setVisible(true);
+        formManager.ammendDepartureManifest();
     }//GEN-LAST:event_DepartureManifestManagementActionPerformed
 
     private void DepartureManifestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartureManifestActionPerformed
         // TODO add your handling code here:
         System.out.println("Departure manifest clicked");
-        new DepartureManifest().setVisible(true);
+        formManager.createDepatureManifest();
     }//GEN-LAST:event_DepartureManifestActionPerformed
 
     private void UploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadButtonActionPerformed
@@ -228,7 +217,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void SeaEntryInwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaEntryInwardActionPerformed
         // TODO add your handling code here:
         System.out.println("Entry Inward clicked");
-        new EntryInward().setVisible(true);
+        formManager.createEntryInward();
     }//GEN-LAST:event_SeaEntryInwardActionPerformed
 
     /**
@@ -273,12 +262,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton DepartureNotification;
     private javax.swing.JButton NewArrivalManifest;
     private javax.swing.JButton SeaEntryInward;
+    private javax.swing.JButton SeaEntryInward1;
     private javax.swing.JButton UploadButton;
+    private javax.swing.JButton UploadButton1;
     private javax.swing.JLabel UsernameDisplay;
     private javax.swing.JLabel dashboardlabel;
-
     private javax.swing.JLabel jLabel1;
-
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
