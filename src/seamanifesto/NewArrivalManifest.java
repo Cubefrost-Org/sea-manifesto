@@ -7,7 +7,10 @@ package seamanifesto;
 import java.awt.GridLayout;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -17,12 +20,16 @@ import javax.swing.event.ChangeEvent;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import seamanifesto.FileManager;
 /**
  *
  * @author nibba
  */
 public class NewArrivalManifest extends javax.swing.JFrame {
 
+    ArrayList<JTextField> entries;
+    ArrayList<String> labels;
+    ArrayList<JSlider> sliders;
     /**
      * Creates new form NewArrivalManifest
      */
@@ -35,6 +42,9 @@ public class NewArrivalManifest extends javax.swing.JFrame {
                     getClass().getResource("/schemas/SAM.json").getFile()));
             
             this.samSchema = (JSONObject) obj;
+            this.entries = new ArrayList<JTextField>();
+            this.labels = new ArrayList<String>();
+            this.sliders = new ArrayList<JSlider>();
 
         } catch (IOException | ParseException e) {
         }
@@ -79,6 +89,7 @@ public class NewArrivalManifest extends javax.swing.JFrame {
             
             JLabel name = new JLabel(key);
             name.setToolTipText(getDesc((JSONObject) groupProps.get(key)));
+            this.labels.add(key);
 
             field.add(name);
 
@@ -86,9 +97,12 @@ public class NewArrivalManifest extends javax.swing.JFrame {
                 JTextField entry = new JTextField();
                 entry.setAlignmentX(RIGHT_ALIGNMENT);
                 field.add(entry);
+                this.entries.add(entry);
             }
 
             if(getType((JSONObject) groupProps.get(key)).equals("number")){
+                
+                this.entries.add(null);
                 
                 double[] range = getRange((JSONObject) groupProps.get(key));
                 
@@ -97,6 +111,8 @@ public class NewArrivalManifest extends javax.swing.JFrame {
                 JSlider slider = new JSlider((int)range[0], (int)range[1]);
                 slider.setPaintLabels(true);
                 slider.setAlignmentX(CENTER_ALIGNMENT);
+                
+                this.sliders.add(slider);
                 
                 JLabel val = new JLabel("0");
                 val.setAlignmentX(CENTER_ALIGNMENT);
@@ -233,6 +249,12 @@ public class NewArrivalManifest extends javax.swing.JFrame {
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
         // TODO add your handling code here:
+        FileManager fm = new FileManager();
+        try {
+            fm.saveFile(this.entries, this.labels, this.sliders);
+        } catch (IOException ex) {
+            Logger.getLogger(NewArrivalManifest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_continueButtonActionPerformed
 
     /**
