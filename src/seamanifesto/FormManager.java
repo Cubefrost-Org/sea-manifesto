@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package seamanifesto;
+
+import java.awt.Dialog;
+
 /**
  *
  * @author nibba
