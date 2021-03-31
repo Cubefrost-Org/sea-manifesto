@@ -5,6 +5,7 @@
  */
 package Main;
 
+import seamanifesto.StartUI;
 import seamanifesto.UserManager;
 
 /**
@@ -13,6 +14,9 @@ import seamanifesto.UserManager;
  */
 public class MasterManager {
     public static void main(String[] args) {
+        StartUI start = new StartUI();
+        start.setVisible(true);
+        start.disp();
         new UserManager().startApp();
         
     }

@@ -72,7 +72,7 @@ public class uploadUI extends javax.swing.JFrame {
         attachment = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Upload_31_Soham Ghosh");
+        setTitle("Upload_31");
 
         upload.setText("upload");
         upload.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

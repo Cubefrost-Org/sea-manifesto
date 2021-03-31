@@ -61,7 +61,7 @@ public class data_saving_interfaceUI extends javax.swing.JFrame {
         selectpath = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Data Saving Interface_Subhradip Debnath_A_19");
+        setTitle("Data Saving Interface");
         setBackground(new java.awt.Color(153, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 48)); // NOI18N
