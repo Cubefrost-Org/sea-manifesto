@@ -43,7 +43,7 @@ public class Data_SelectionUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Data Selection_31_Soham Ghosh");
+        setTitle("Data Selection");
 
         attach.setText("Attach");
         attach.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
