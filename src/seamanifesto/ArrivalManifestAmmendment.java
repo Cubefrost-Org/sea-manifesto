@@ -32,8 +32,7 @@ public class ArrivalManifestAmmendment extends javax.swing.JFrame {
         JSONParser jparser = new JSONParser();
         
         try {
-            Object obj = jparser.parse(new FileReader(
-                    getClass().getResource("/schemas/SAA.json").getFile()));
+            Object obj = jparser.parse(new FileReader("lib/SAA.json"));
             
             this.samSchema = (JSONObject) obj;
 

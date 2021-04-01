@@ -1,0 +1,2583 @@
+{
+	"definitions": {},
+	"type": "object",
+	"description": "ICEGATE Schema_Version:SAM1103",
+	"required": [
+		"headerField",
+		"master",
+		"digSign"
+	],
+	"properties": {
+
+		"headerField": {
+			"type": "object",
+			"required": [
+				"senderID",
+				"receiverID",
+				"versionNo",
+				"indicator",
+				"messageID",
+				"sequenceOrControlNumber",
+				"date",
+				"time",
+				"reportingEvent"
+			],
+
+			"properties": {
+
+				"senderID": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 30,
+					"description": "ICEGATE ID"
+				},
+				"receiverID": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 30,
+					"description": "Port code where declared"
+				},
+				"versionNo": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 7,
+					"description": "ICEGATE version being used: Default value 1.0"
+				},
+				"indicator": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 1,
+					"description": "test (T) or production (P) indicator"
+				},
+				"messageID": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 7,
+					"description": "Default value: IECHE01"
+				},
+				"sequenceOrControlNumber": {
+					"type": "number",
+					"minimum": 1.0,
+					"maximum": 9999999.0,
+					"description": "unique value that can be used to uniquely identify the document at User End"
+				},
+				"date": {
+					"type": "string",
+					"minOccurs": "1",
+					"maxLength": 8,
+					"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$",
+					"description": "Date of transmission of message: YYYYMMDD Format"
+				},
+
+				"time": {
+					"type": "string",
+					"pattern": "^([T])([0-1][0-9]|[2][0-3]):([0-5][0-9])$",
+					"description": "Time of transmission of message"
+				},
+				"reportingEvent": {
+					"type": "string",
+					"minOccurs": "1",
+					"description": "Default value: ES",
+					"maxLength": 4
+				}
+			}
+		},
+
+
+		"master": {
+			"type": "object",
+			"description": "Master",
+			"required": [
+				"decRef",
+				"authPrsn",
+				"vesselDtls",
+				"voyageDtls",
+				"prsnOnBoard",
+				"voyageTransportEquipment"
+			],
+			"properties": {
+				"errCD": {
+					"type": "array",
+					"description": "Error Codes",
+					"items": {
+						"type": "object",
+						"required": [
+							"pathname",
+							"errorcode",
+							"errormessage"
+						],
+						"properties": {
+							"pathname": {
+								"type": "string",
+								"description": "Path Name",
+								"minLength": 0,
+								"maxLength": 100
+							},
+							"errorcode": {
+								"type": "string",
+								"description": "Error Code",
+								"minLength": 0,
+								"maxLength": 50
+							},
+							"errormessage": {
+								"type": "string",
+								"description": "error message",
+								"minLength": 0,
+								"maxLength": 100
+							}
+						}
+					}
+				},
+				"Amend_det": {
+					"type": "array",
+					"description": "Amendment Details ",
+					"items": {
+						"type": "object",
+						"required": [
+							"AmendRefNo",
+							"AmendFlag",
+							"AmendType"
+						],
+						"properties": {
+							"AmendRefNo": {
+								"type": "string",
+								"description": "Amend Ref No ",
+								"minLength": 0,
+								"maxLength": 15
+							},
+							"AmendFlag": {
+								"type": "string",
+								"description": "Amend Flag ",
+								"minLength": 0,
+								"maxLength": 2
+							},
+							"AmendType": {
+								"type": "string",
+								"description": "Amend Type",
+								"minLength": 0,
+								"maxLength": 10
+							}
+						}
+					}
+				},
+				"decRef": {
+					"type": "object",
+					"required": [
+						"msgTyp",
+						"prtofRptng",
+						"jobNo",
+						"jobDt",
+						"rptngEvent",
+						"mnfstNoRotnNo",
+						"mnfstDtRotnDt"
+					],
+					"properties": {
+						"msgTyp": {
+							"type": "string",
+							"description": "The Flag specifying the  action requested on this transmission",
+							"minLength": 1,
+							"maxLength": 1
+						},
+						"prtofRptng": {
+							"type": "string",
+							"description": "The Custom Location of Reporting",
+							"pattern": "([I][N])([A-Z]|[0-9]){4}$",
+							"minLength": 5,
+							"maxLength": 6
+						},
+						"jobNo": {
+							"type": "number",
+							"description": "The Unique ID provided by User for this transmission",
+							"minimum": 1.0,
+							"maximum": 9999999.0
+						},
+						"jobDt": {
+							"type": "string",
+							"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$",
+							"description": "The Date of generation of of Unique ID provided by User for this transmission"
+						},
+						"rptngEvent": {
+							"type": "string",
+							"description": "The Code specifying the Reporting Event pertaining to this transmission,list of values, which will be accepted SAM,SDM,SAA,SEI,SDN",
+							"minLength": 1,
+							"maxLength": 4
+						},
+						"mnfstNoRotnNo": {
+							"type": "number",
+							"description": "The Unique ID generated by Customs for this Complaince",
+							"minimum": 1.0,
+							"maximum": 9999999.0
+						},
+						"mnfstDtRotnDt": {
+							"type": "string",
+							"description": "The Date generation of Unique ID by Customs for  this Compliance",
+							"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+						},
+						"vesselTypMvmt": {
+							"type": "string",
+							"description": "Indicator referring to Type of Vessel Movement as per SCMTR",
+							"minLength": 0,
+							"maxLength": 2
+						},
+						"dptrMnfstNo": {
+							"type": "number",
+							"description": "Reference to Previous Manifest",
+							"minimum": 1.0,
+							"maximum": 9999999.0
+						},
+						"dptrMnfstDt": {
+							"type": "string",
+							"description": "Reference to Previous Manifest ",
+							"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+						}
+					}
+				},
+				"authPrsn": {
+					"type": "object",
+					"description": "The Details of Authorised person responsible as per Customs legislation",
+					"required": [
+						"sbmtrTyp",
+						"sbmtrCd",
+						"authReprsntvCd",
+						"shpngLineCd",
+						"authSeaCarrierCd",
+						"masterName",
+						"trmnlOprtrCd"
+					],
+					"properties": {
+						"sbmtrTyp": {
+							"type": "string",
+							"description": "The Type of Authorised Entity submitting this Manifest",
+							"minLength": 1,
+							"maxLength": 4
+						},
+						"sbmtrCd": {
+							"type": "string",
+							"description": "The Code of Authorised Entity submitting this Manifest",
+							"minLength": 1,
+							"maxLength": 15
+						},
+						"authReprsntvCd": {
+							"type": "string",
+							"description": "PAN of Authorised Person",
+							"minLength": 1,
+							"maxLength": 10
+						},
+						"shpngLineCd": {
+							"type": "string",
+							"description": "The Code of Main Line Operator ",
+							"minLength": 1,
+							"maxLength": 10
+						},
+						"authSeaCarrierCd": {
+							"type": "string",
+							"description": "The Registered Code of Authorised Sea Carrier ( Entity responsible for operating the Conveyance)",
+							"minLength": 1,
+							"maxLength": 10
+						},
+						"masterName": {
+							"description": "Name of the Master of a means of transport such as a vessel",
+							"type": "string",
+							"minLength": 1,
+							"maxLength": 30
+						},
+						"shpngLineBondNmbr": {
+							"type": "string",
+							"description": "The Registered Number of Shipping Line Bond ( Entity responsible for operating the Conveyance)",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"trmnlOprtrCd": {
+							"type": "string",
+							"description": "The Code of the Terminal Custodian at the Port of Call",
+							"minLength": 1,
+							"maxLength": 10
+						}
+					}
+				},
+				"vesselDtls": {
+					"type": "object",
+					"description": "The Details of Conveyance",
+					"required": [
+						"modeOfTrnsprt",
+						"typOfTrnsprtMeans",
+						"trnsprtMeansId",
+						"purposeOfCall"
+					],
+					"properties": {
+						"modeOfTrnsprt": {
+							"type": "string",
+							"description": "Mode of Transport used for crossing the Border/Movement,Coded",
+							"minLength": 1,
+							"maxLength": 4
+						},
+						"typOfTrnsprtMeans": {
+							"type": "string",
+							"description": "The type of identifier of the means of transport used in crossing the border/Movement, coded,default Values â€“ 10,11",
+							"minLength": 1,
+							"maxLength": 25
+						},
+						"trnsprtMeansId": {
+							"type": "string",
+							"description": "Identifier to identify the means of transport used for crossing the Border/Movement,Coded",
+							"minLength": 1,
+							"maxLength": 25
+						},
+
+						"shipTyp": {
+							"type": "string",
+							"description": "The type of the ship shown on its IMO ship's certificate.  ",
+							"minLength": 0,
+							"maxLength": 3
+						},
+						"purposeOfCall": {
+							"type": "string",
+							"description": "A code representing the primary reason for the ship to enter the referenced port.",
+							"minLength": 1,
+							"maxLength": 3
+						}
+					}
+				},
+				"voyageDtls": {
+					"type": "object",
+					"description": "The details of Voyage/Trip of the conveyance",
+					"required": [
+						"voyageNo",
+						"cnvnceRefNmbr",
+						"totalNoOfTrnsprtEqmtMnfsted",
+						"crgoDescCdd",
+						"briefCrgoDesc",
+						"totalNmbrOfLines",
+						"exptdDtAndTimeOfArvl",
+						"nmbrOfPsngrsMnfsted",
+						"nmbrOfCrewMnfsted",
+						"shipItnry"
+					],
+					"properties": {
+						"voyageNo": {
+							"type": "string",
+							"description": "Unique number assigned by Operator for a voyage",
+							"minLength": 1,
+							"maxLength": 10
+						},
+						"cnvnceRefNmbr": {
+							"type": "string",
+							"description": "To identify a journey of a means of transport, for example voyage number, flight number, trip number.(Assigned by Port,Airport)",
+							"minLength": 1,
+							"maxLength": 35
+						},
+						"totalNoOfTrnsprtEqmtMnfsted": {
+							"type": "string",
+							"description": "The Count of Transport Equipment Manifested on the voyage",
+							"minLength": 1,
+							"maxLength": 5
+						},
+						"crgoDescCdd": {
+							"type": "string",
+							"description": "An explanation about the purpose of this instance.",
+							"minLength": 1,
+							"maxLength": 3
+						},
+						"briefCrgoDesc": {
+							"type": "string",
+							"description": "A description of the type of cargo carried on the ship in general terms.",
+							"minLength": 1,
+							"maxLength": 30
+						},
+						"totalNmbrOfLines": {
+							"description": "An explanation about the purpose of this instance.",
+							"type": "number",
+							"minimum": 1.0,
+							"maximum": 99999.0
+						},
+						"exptdDtAndTimeOfArvl": {
+							"type": "string",
+							"description": "An explanation about the purpose of this instance.",
+							"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])[T]([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+						},
+
+						"nmbrOfPsngrsMnfsted": {
+							"type": "number",
+							"description": "An explanation about the purpose of this instance.",
+							"minimum": 1.0,
+							"maximum": 9999.0
+						},
+						"nmbrOfCrewMnfsted": {
+							"description": "An explanation about the purpose of this instance.",
+							"type": "number",
+							"minimum": 1.0,
+							"maximum": 9999.0
+						},
+						"shipItnry": {
+							"type": "array",
+							"description": "Ship Itinerary",
+							"items": {
+								"required": [
+									"shipItnrySeq",
+									"prtOfCallCdd"
+								],
+								"type": "object",
+								"properties": {
+									"shipItnrySeq": {
+										"type": "string",
+										"description": "The serial number indicating the sequence of the port of call by the Transport Means",
+										"minLength": 1,
+										"maxLength": 6
+									},
+									"prtOfCallCdd": {
+										"type": "string",
+										"description": "The Code representing the Port of call by Transport Means",
+										"minLength": 1,
+										"maxLength": 6
+									},
+									"prtOfCallName": {
+										"type": "string",
+										"description": "The Name representing the Port of call by Transport Means",
+										"minLength": 0,
+										"maxLength": 256
+									}
+								}
+							}
+						}
+					}
+				},
+				"mastrCnsgmtDec": {
+					"type": "array",
+					"description": "The Details pertaining to Transport Documents carried in the conveyance. ",
+					"items": {
+						"required": [
+							"MCRef",
+							"locCstm"
+						],
+						"type": "object",
+						"properties": {
+							"MCRef": {
+								"type": "object",
+								"description": "The Reference of Master Consignment",
+								"required": [
+									"lineNo",
+									"mstrBlNo",
+									"mstrBlDt",
+									"consolidatedIndctr",
+									"prevDec",
+									"consolidatorPan"
+								],
+								"properties": {
+									"lineNo": {
+										"type": "integer",
+										"description": "The serial number indicating the list of Transport Contracts carried in the Transport Means",
+										"minimum": 1.0,
+										"maximum": 99999.0
+									},
+									"mstrBlNo": {
+										"type": "string",
+										"description": "The Unique Identifier of Transport Document issued by Main Line Operator",
+										"minimum": 1.0,
+										"maximum": 20.0
+									},
+									"mstrBlDt": {
+										"type": "string",
+										"description": "The date of issue of Unique Identifier of Transport Document issued by Main Line Operator",
+										"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+									},
+									"consolidatedIndctr": {
+										"type": "string",
+										"description": "The Code indicating if the cargo is consolidated or not,default Values : S,C,H",
+										"minLength": 1,
+										"maxLength": 4
+									},
+									"prevDec": {
+										"type": "string",
+										"description": "The Code indicating if the declaration is filed earlier for the related cargo",
+										"minLength": 1,
+										"maxLength": 4
+									},
+									"consolidatorPan": {
+										"type": "string",
+										"description": "Description about the instance ",
+										"minLength": 1,
+										"maxLength": 35
+									}
+								}
+							},
+							"prevRef": {
+								"type": "object",
+								"description": "The Details of Reference to declaration filed earlier for this cargo",
+								"properties": {
+									"cinTyp": {
+										"type": "string",
+										"description": "The Type of Cargo Identification Number given by Customs for referenced Cargo",
+										"minLength": 0,
+										"maxLength": 4
+									},
+									"mcinPcin": {
+										"type": "string",
+										"description": "The unique Identifier issued by Customs for Transport Contract issued by Main line operator- Master Cargo Identification Number",
+										"minLength": 0,
+										"maxLength": 20
+									},
+									"csnSbmtdTyp": {
+										"type": "string",
+										"description": "The Type of Authorised Entity who filed",
+										"minLength": 0,
+										"maxLength": 4
+									},
+									"csnSbmtdBy": {
+										"type": "string",
+										"description": "The Code of Authorised Entity who filed CSN",
+										"minLength": 0,
+										"maxLength": 20
+									},
+									"csnRptngTyp": {
+										"type": "string",
+										"description": "The reporting Type of referenced CSN",
+										"minLength": 0,
+										"maxLength": 4
+									},
+									"csnSiteId": {
+										"type": "string",
+										"description": "The Custom Location of Reporting",
+										"minLength": 0,
+										"maxLength": 6
+									},
+									"csnNmbr": {
+										"type": "number",
+										"description": "The Identifier number of referenced CSN",
+										"minimum": 1,
+										"maximum": 999999
+									}
+								},
+								"csnDt": {
+									"type": "string",
+									"description": "The identifier date of referenced CSN",
+									"format": "date"
+								},
+
+								"splitIndctr": {
+									"type": "string",
+									"description": "The Code to indicate carriage of Split Consignment",
+									"minLength": 0,
+									"maxLength": 2
+								},
+								"nmbrOfPkgs": {
+									"type": "number",
+									"description": "The measure of packages being carried in the voyage for particular transport contract",
+									"minimum": 0.0,
+									"maximum": 9999999999999.0
+								},
+								"typOfPackage": {
+									"type": "string",
+									"description": "The type of packages referenced as being carried in the voyage for particular Transport Contract",
+									"minLength": 0,
+									"maxLength": 4
+								}
+							},
+							"locCstm": {
+								"type": "object",
+								"description": "The Details of Relevant of Port of Call pertaining to this cargo",
+								"required": [
+									"firstPrtOfEntry",
+									"destPrt",
+									"nxtPrtOfUnlading",
+									"typOfCrgo",
+									"itemTyp",
+									"crgoMvmt",
+									"natrOfCrgo"
+								],
+								"properties": {
+									"firstPrtOfEntry": {
+										"type": "string",
+										"description": "The Code of Port indicating first port of Arrival/Last of Port of Departure",
+										"minLength": 1,
+										"maxLength": 6
+									},
+									"destPrt": {
+										"type": "string",
+										"description": "The Code of Port indicating Customs clearance",
+										"minLength": 1,
+										"maxLength": 10
+									},
+									"nxtPrtOfUnlading": {
+										"type": "string",
+										"description": "The Code indicating the Port of next unlading",
+										"minLength": 1,
+										"maxLength": 6
+									},
+									"typOfCrgo": {
+										"type": "string",
+										"description": "The Code specifying the type of cargo based on the cross border carriage terms",
+										"minLength": 1,
+										"maxLength": 2
+									},
+									"itemTyp": {
+										"type": "string",
+										"description": "The Code specifying the type of cargo based on application of customs rules",
+										"minLength": 1,
+										"maxLength": 2
+									},
+									"crgoMvmt": {
+										"type": "string",
+										"description": "The Code specifying the type of cargo based on movement of cargo",
+										"minLength": 1,
+										"maxLength": 4
+									},
+									"natrOfCrgo": {
+										"type": "string",
+										"description": "The Flag to indicate the type of Transport Equipment carrying the referenced cargo",
+										"minLength": 1,
+										"maxLength": 4
+									}
+								}
+							},
+							"trnshpr": {
+								"type": "object",
+								"description": "The Details of Authorised Person undertaking responsibility of Transhipment",
+								"required": [
+									"trnshprCd",
+									"trnshprBond"
+								],
+								"properties": {
+									"trnshprCd": {
+										"type": "string",
+										"description": "The code of an authorised Entity undertaking responsibility of Transhipment.The Registered Carrier of Transhipper Code(Authorised ( Entity responsible for operating the Conveyance)",
+										"minLength": 1,
+										"maxLength": 10
+									},
+									"trnshprBond": {
+										"type": "string",
+										"description": "The Bond of Authorised Entity transhiing this Manifest",
+										"minLength": 1,
+										"maxLength": 10
+									}
+								}
+							},
+							"trnsprtDoc": {
+								"type": "object",
+								"description": "The Details of Document issued by Main Transport Operator",
+								"required": [
+									"prtOfAcptCdd",
+									"prtOfReceiptCdd",
+									"cnsgnrsName",
+									"cnsgnrStreetAddress",
+									"cnsgnrCity",
+									"cnsgnrCntryCd",
+									"cnsgnesName",
+									"cnsgneStreetAddress",
+									"cnsgneCity",
+									"cnsgneCntryCd",
+									"nameOfAnyOtherNotfdParty",
+									"notfdPartyStreetAddress",
+									"notfdPartyCity",
+									"goodsDescAsPerBl"
+								],
+								"properties": {
+									"prtOfAcptCdd": {
+										"type": "string",
+										"description": "Identification of the place where the goods are taken over by the carrier from the consignor,Coded",
+										"minLength": 5,
+										"maxLength": 6
+									},
+									"prtOfAcptName": {
+										"type": "string",
+										"description": "Identification of the place where the goods are taken over by the carrier from the consignor,Name",
+										"minLength": 0,
+										"maxLength": 256
+									},
+									"prtOfReceiptCdd": {
+										"type": "string",
+										"description": "Identification of the place at which the goods have been or are to be received by the consignee",
+										"minLength": 5,
+										"maxLength": 10
+									},
+									"prtOfReceiptName": {
+										"type": "string",
+										"description": "Name of the place at which the goods have been or are to be received by the consignee",
+										"minLength": 0,
+										"maxLength": 256
+									},
+									"cnsgnrsName": {
+										"type": "string",
+										"description": "The Name of the Consignor as per the Transport Document",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"cnsgnrsCd": {
+										"type": "string",
+										"description": "The Identification Code of the Consignor as per the Transport Document issued by Main Line Operator",
+										"minLength": 0,
+										"maxLength": 17
+									},
+									"cnsgnrCdTyp": {
+										"type": "string",
+										"description": "The Type of Identification of Code of the Consignor as per the Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 3
+									},
+									"cnsgnrStreetAddress": {
+										"type": "string",
+										"description": "The address of the Consignor as per Transport Document issued by MLO",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"cnsgnrCity": {
+										"type": "string",
+										"description": "The City of the Consignor as per Transport Document issued by MLO",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"cnsgnrCntrySubDivName": {
+										"type": "string",
+										"description": "The State or any Subdivision of the Country of the Consignor as per MLO",
+										"minLength": 0,
+										"maxLength": 35
+									},
+									"cnsgnrCntrySubDivCd": {
+										"type": "string",
+										"description": "The Code indicating Consignor's State or Subdivision of the country as per Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 9
+									},
+									"cnsgnrCntryCd": {
+										"type": "string",
+										"description": "The code indicating the country of Consignor as per Transport Document issued by MLO",
+										"minLength": 1,
+										"maxLength": 2
+									},
+									"cnsgnrPstcd": {
+										"type": "string",
+										"description": "The Postal Code of the Consignor as per Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 9
+									},
+									"cnsgnesName": {
+										"type": "string",
+										"description": "The Name of the Consignee as per the Transport Document",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"cnsgnesCd": {
+										"type": "string",
+										"description": "The Identification Code of the Consignee as per the Transport Document issued by Main Line Operator",
+										"minLength": 0,
+										"maxLength": 17
+									},
+									"typOfCd": {
+										"type": "string",
+										"description": "The Type of Identification of Code of the Consignee as per the Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 3
+									},
+									"cnsgneStreetAddress": {
+										"type": "string",
+										"description": "The address of the Consignee as per Transport Document issued by MLO",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"cnsgneCity": {
+										"type": "string",
+										"description": "The City of the Consignee as per Transport Document issued by MLO",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"cnsgneCntrySubDivName": {
+										"type": "string",
+										"description": "The State or any Subdivision of the Country of the Consignee as per MLO",
+										"minLength": 0,
+										"maxLength": 35
+									},
+									"cnsgneCntrySubDiv": {
+										"type": "string",
+										"description": "The Code indicating Consignee's State or Subdivision of the country as per Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 9
+									},
+									"cnsgneCntryCd": {
+										"type": "string",
+										"description": "The code indicating the country of Consignor as per Transport Document issued by MLO",
+										"minLength": 1,
+										"maxLength": 2
+									},
+									"cnsgnePstcd": {
+										"type": "string",
+										"description": "The Postal Code of the Consignor as per Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 9
+									},
+									"nameOfAnyOtherNotfdParty": {
+										"type": "string",
+										"description": "The Name of the Notified Party as per the Transport Document",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"panOfNotfdParty": {
+										"type": "string",
+										"description": "The Identification Code of the Notified Party as per the Transport Document issued by Main Line Operator",
+										"minLength": 0,
+										"maxLength": 17
+									},
+									"typOfNotfdPartyCd": {
+										"type": "string",
+										"description": "The Type of Identification of Code of the Notified Party as per the Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 3
+									},
+									"notfdPartyStreetAddress": {
+										"type": "string",
+										"description": "The address of the Notified Party as per Transport Document issued by MLO",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"notfdPartyCity": {
+										"type": "string",
+										"description": "The City of the Notified Party as per Transport Document issued by MLO",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"notfdPartyCntrySubDivName": {
+										"type": "string",
+										"description": "The State or any Subdivision of the Country of the Notified party as per Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 35
+									},
+									"notfdPartyCntrySubDiv": {
+										"type": "string",
+										"description": "The Code indicating Notified Party's State or Subdivision of the country as per Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 9
+									},
+									"notfdPartyCntryCd": {
+										"type": "string",
+										"description": "The code indicating the country of Notified Party as per Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 2
+									},
+									"notfdPartyPstcd": {
+										"type": "string",
+										"description": "The Postal Code of the Notified Party as per Transport Document issued by MLO",
+										"minLength": 0,
+										"maxLength": 9
+									},
+									"goodsDescAsPerBl": {
+										"type": "string",
+										"description": "A description of the type of cargo carried on the ship in general terms as per Transport Document issued by MLO",
+										"minLength": 1,
+										"maxLength": 512
+									},
+									"ucrTyp": {
+										"type": "string",
+										"description": "The Type of Unique Consignment Reference",
+										"minLength": 0,
+										"maxLength": 3
+									},
+									"ucrCd": {
+										"type": "string",
+										"description": "Unique number by Shipper assigned to goods being subject to cross border transactions.,",
+										"minLength": 0,
+										"maxLength": 35
+									}
+								}
+							},
+							"trnsprtDocMsr": {
+								"type": "object",
+								"description": "The Details of Document issued by NVOCC",
+								"required": [
+									"marksNoOnPkgs", "nmbrOfPkgs", "typsOfPkgs"
+								],
+								"properties": {
+									"nmbrOfPkgs": {
+										"type": "number",
+										"description": "An explanation about the purpose of this instance.",
+										"minimum": 1.0,
+										"maximum": 99999999.0
+									},
+									"typsOfPkgs": {
+										"type": "string",
+										"description": "A code representing the type of package used for the referenced cargo.",
+										"minLength": 1,
+										"maxLength": 3
+									},
+									"marksNoOnPkgs": {
+										"type": "string",
+										"description": "An alphanumeric or symbolic identifier assigned by the shipper as a means to track cargo not carried in bulk",
+										"minLength": 1,
+										"maxLength": 512
+									},
+									"grossWeight": {
+										"type": "number",
+										"description": "Weight (mass) of goods including \t\t\t\t\t\t\t\t\t\t\t\t         packaging but excluding the carrier's equipment for a \t\t\t\t\t\t\t\t\t\t\t\t         document",
+										"minimum": 0.0,
+										"maximum": 999999999999.999
+									},
+									"netWeight": {
+										"type": "number",
+										"description": "Weight (mass) of the goods themselves without any packing",
+										"minimum": 0.0,
+										"maximum": 999999999999.999
+									},
+									"unitOfWeight": {
+										"type": "string",
+										"description": "A code representing the type of measure used for the referenced cargo",
+										"minLength": 0,
+										"maxLength": 3
+									},
+									"grossVolume": {
+										"type": "number",
+										"description": "A measure of the gross volume, normally calculated by multiplying the maximum length, width and height of the cargo item",
+										"minimum": 0.0,
+										"maximum": 999999999999.999
+									},
+									"unitOfVolume": {
+										"type": "string",
+										"description": "A code representing the type of measure used for the referenced cargo",
+										"minLength": 0,
+										"maxLength": 3
+									},
+									"invoiceValueOfCnsgmt": {
+										"type": "number",
+										"description": "Total of all invoice amounts declared in a single declaration",
+										"minimum": 0.0,
+										"maximum": 9999999999999999.99
+									},
+									"crncyCd": {
+										"type": "string",
+										"description": "Code specifying a monetary unit or currency",
+										"minLength": 0,
+										"maxLength": 3
+									}
+								}
+							},
+							"itemDtls": {
+								"type": "array",
+								"description": "The Details of Cargo items in reference to Transport Document",
+								"items": {
+									"type": "object",
+									"required": [
+										"crgoItemSeqNmbr",
+										"hsCd",
+										"unoCd",
+										"imdgCd"
+									],
+									"properties": {
+										"crgoItemSeqNmbr": {
+											"type": "number",
+											"description": "The Serial number indicating the cargo items carried in the Transport Document",
+											"minimum": 1.0,
+											"maximum": 99999.0
+										},
+										"hsCd": {
+											"type": "string",
+											"description": "A code describing the commodity classification, e.g. Harmonized System of Classification (HSN)",
+											"minLength": 1,
+											"maxLength": 8
+										},
+										"crgoItemDesc": {
+											"type": "string",
+											"description": "Plain language description of the nature of a goods item sufficient to identify it for cross-border regulatory purposes such as customs, phytosanitary, statistical or transport purposes",
+											"minLength": 0,
+											"maxLength": 256
+										}
+									},
+									"unoCd": {
+										"type": "string",
+										"description": "United Nations Dangerous Goods Identifier (UNDG) assigned by the UN Sub-Committee of Experts on the Transport of Dangerous Goods and shown in the IMO IMDG",
+										"minLength": 1,
+										"maxLength": 5
+									},
+									"imdgCd": {
+										"type": "string",
+										"description": "Any risk in addition to the class of the referenced dangerous goods according to the IMO IMDG Code",
+										"minLength": 1,
+										"maxLength": 3
+									},
+									"nmbrOfPkgs": {
+										"type": "number",
+										"description": "A description of the type of cargo carried on the ship in general terms as per Transport Document issued by MLO",
+										"minimum": 0.0,
+										"maximum": 99999999.0
+									},
+									"typOfPkgs": {
+										"type": "string",
+										"description": "Number of individual items packaged in such a way that they cannot be divided without first undoing the packing",
+										"minLength": 0,
+										"maxLength": 3
+									}
+								}
+							},
+							"trnsprtEqmt": {
+								"type": "array",
+								"description": "The Details of Transport Equipment referenced in Transport Document",
+								"items": {
+									"type": "object",
+									"required": [
+										"eqmtSeqNo",
+										"eqmtId",
+										"eqmtTyp",
+										"eqmtLoadStatus",
+										"totalNmbrOfPkgs",
+										"socFlag"
+									],
+									"properties": {
+										"eqmtSeqNo": {
+											"type": "number",
+											"description": "The Serial number of Equipment referenced in the Transport Document",
+											"minimum": 1.0,
+											"maximum": 99999.0
+										},
+										"eqmtId": {
+											"type": "string",
+											"description": "Marks (letters and/or numbers) which identify equipment e.g. unit load device, Container",
+											"minLength": 1,
+											"maxLength": 17
+										},
+										"eqmtTyp": {
+											"type": "string",
+											"description": "The Code specifying the type of the Equipment used for Transport",
+											"minLength": 1,
+											"maxLength": 3
+										},
+										"eqmtSize": {
+											"type": "string",
+											"description": "The Code specifying the size of the Equipment used for Transport",
+											"minLength": 0,
+											"maxLength": 4
+										},
+										"eqmtLoadStatus": {
+											"type": "string",
+											"description": "Code specifying how full is piece of transport is",
+											"minLength": 1,
+											"maxLength": 3
+										},
+										"adtnlEqmtHold": {
+											"type": "string",
+											"description": "The Identifier for Additional Equipment used for Hold e.g Tray etc",
+											"minLength": 0,
+											"maxLength": 256
+										},
+										"finalDestLoc": {
+											"type": "string",
+											"description": "The Code indicating the location of unloading of the referenced cargo",
+											"minLength": 5,
+											"maxLength": 10
+										},
+										"eventDt": {
+											"type": "string",
+											"description": "The Code indicating the Date of Event",
+											"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])[T]([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+										},
+										"eqmtSealTyp": {
+											"type": "string",
+											"description": "The Type of Seal used for affixing to a Transport Equipment",
+											"minLength": 0,
+											"maxLength": 5
+										},
+										"eqmtSealNmbr": {
+											"type": "string",
+											"description": "The identification number of a seal affixed to a piece of transport equipment.",
+											"minLength": 0,
+											"maxLength": 15
+										},
+										"otherEqmtId": {
+											"type": "string",
+											"description": "The Identifier of Other Additional Equipment used for Carriage",
+											"minLength": 0,
+											"maxLength": 256
+										},
+										"eqmtStatus": {
+											"type": "string",
+											"description": "The Status of the Transport Equipment",
+											"minLength": 0,
+											"maxLength": 3
+
+										},
+										"socFlag": {
+											"type": "string",
+											"description": "The Indicator to specify the Ownership of the Container",
+											"minLength": 1,
+											"maxLength": 1
+										},
+										"cntrAgntCd": {
+											"type": "string",
+											"description": "The Identifier of the Container Agent responsible for handling of Container",
+											"minLength": 0,
+											"maxLength": 17
+										},
+										"cntrWeight": {
+											"type": "number",
+											"description": "The Verified Gross Mass (VGM) is the weight of the cargo including dunnage and bracing plus the tare weight of the container carrying this cargo in KGS",
+											"minimum": 0.0,
+											"maximum": 9999999999999.0
+										},
+										"totalNmbrOfPkgs": {
+											"type": "number",
+											"description": "The measure of packages being carried in the voyage for particular Transport Equipment",
+											"minimum": 0.0,
+											"maximum": 9999999999999.0
+										}
+									}
+								}
+							},
+							"itnry": {
+								"type": "array",
+								"description": "The Details of Routing for the referenced Cargo",
+								"items": {
+									"type": "object",
+									"description": "An explanation about the purpose of this instance.",
+									"required": [
+										"prtOfCallSeqNmbr",
+										"modeOfTrnsprt"
+									],
+									"properties": {
+										"prtOfCallSeqNmbr": {
+											"type": "number",
+											"description": "The Serial number indicating the sequence of the port of call by the referenced cargo",
+											"minimum": 1.0,
+											"maximum": 9999.0
+										},
+										"prtOfCallCdd": {
+											"type": "string",
+											"description": "The Code indicating the place/Port of call,Coded",
+											"minLength": 5,
+											"maxLength": 10
+										},
+										"prtOfCallName": {
+											"type": "string",
+											"description": "The Code indicating the place/Port of call, Text",
+											"minLength": 0,
+											"maxLength": 256
+										},
+										"nxtPrtOfCallCdd": {
+											"type": "string",
+											"description": "The Registered Coded of Next Port of Call, Coded",
+											"minLength": 5,
+											"maxLength": 10
+										},
+										"nxtPrtOfCallName": {
+											"type": "string",
+											"description": "The Registered Coded of Next Port of Call,Text",
+											"minLength": 0,
+											"maxLength": 256
+										},
+										"modeOfTrnsprt": {
+											"type": "string",
+											"description": "Mode of Transport used for crossing the Border/Movement,Coded",
+											"minLength": 1,
+											"maxLength": 1
+										}
+									}
+								}
+							},
+
+							"houseCargoDec": {
+								"type": "array",
+								"description": "The House Cargo Details",
+								"items": {
+									"type": "object",
+									"required": [
+										"HCRef", "locCstm"
+									],
+									"properties": {
+										"HCRef": {
+											"type": "object",
+											"description": "The Details of House Transport Document",
+											"required": [
+												"subLineNo",
+												"blNo",
+												"blDt",
+												"consolidatedIndctr",
+												"consolidatorPan",
+												"prevDec"
+											],
+											"properties": {
+												"subLineNo": {
+													"type": "number",
+													"description": "The Serial number of the House Transport Document",
+													"minimum": 1.0,
+													"maximum": 9999.0
+												},
+												"blNo": {
+													"type": "string",
+													"description": "The Unique Identifier of Transport Document issued by NVOCC to the Actual Shipper",
+													"minimum": 1.0,
+													"maximum": 20.0
+												},
+												"blDt": {
+													"type": "string",
+													"description": "The date of issue of Unique Identifier of Transport Document issued by NVOCC to the Shipper",
+													"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+												},
+												"consolidatedIndctr": {
+													"type": "string",
+													"description": "The Code indicating if the cargo is consolidated or not",
+													"minLength": 1,
+													"maxLength": 4
+												},
+												"consolidatorPan": {
+													"type": "string",
+													"description": "Description about the instance",
+													"minLength": 1,
+													"maxLength": 35
+												},
+												"prevDec": {
+													"type": "string",
+													"description": "The Code indicating if the declaration is filed earlier for the related cargo",
+													"minLength": 1,
+													"maxLength": 4
+												}
+											}
+										},
+										"prevRef": {
+								"type": "object",
+								"description": "The Details of Reference to declaration filed earlier for this cargo",
+								"properties": {
+									"cinTyp": {
+										"type": "string",
+										"description": "The Type of Cargo Identification Number given by Customs for referenced Cargo",
+										"minLength": 0,
+										"maxLength": 4
+									},
+									"mcinPcin": {
+										"type": "string",
+										"description": "The unique Identifier issued by Customs for Transport Contract issued by Main line operator- Master Cargo Identification Number",
+										"minLength": 0,
+										"maxLength": 20
+									},
+									"csnSbmtdTyp": {
+										"type": "string",
+										"description": "The Type of Authorised Entity who filed CSN",
+										"minLength": 0,
+										"maxLength": 4
+									},
+									"csnSbmtdBy": {
+										"type": "string",
+										"description": "The Code of Authorised Entity who filed CSN",
+										"minLength": 0,
+										"maxLength": 20
+									},
+									"csnRptngTyp": {
+										"type": "string",
+										"description": "The reporting Type of referenced CSN",
+										"minLength": 0,
+										"maxLength": 4
+									},
+									"csnSiteId": {
+										"type": "string",
+										"description": "The Custom Location of Reporting",
+										"minLength": 0,
+										"maxLength": 6
+									},
+									"csnNmbr": {
+										"type": "number",
+										"description": "The Identifier number of referenced CSN",
+										"minimum": 0.0,
+										"maximum": 9999999.0
+									},
+									"csnDt": {
+										"type": "string",
+										"description": "The identifier date of referenced CSN",
+										"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+									},
+									
+									"splitIndctr": {
+										"type": "string",
+										"description": "The Code to indicate carriage of Split Consignment",
+										"minLength": 0,
+										"maxLength": 2
+									},
+									"nmbrOfPkgs": {
+										"type": "number",
+										"description": "The measure of packages being carried in the voyage for particular transport contract",
+										"minimum": 0.000000,
+										"maximum": 99999999.0
+									},
+									"typOfPackage": {
+										"type": "string",
+										"description": "The type of packages referenced as being carried in the voyage for particular Transport Contract",
+										"minLength": 0,
+										"maxLength": 4
+									}
+								}
+							},
+										"locCstm": {
+											"type": "object",
+											"description": "The Details of locations relevant for this House Transport Document ",
+											"required": [
+												"typOfCrgo",
+												"itemTyp",
+												"crgoMvmt", "firstPrtOfEntry",
+												"natrOfCrgo", "destPrt", "nxtPrtOfUnlading"
+											],
+											"properties": {
+												"firstPrtOfEntry": {
+													"type": "string",
+													"description": "The Code of Port indicating first port of Arrival/Last of Port of Departure",
+													"minLength": 5,
+													"maxLength": 6
+												},
+												"destPrt": {
+													"type": "string",
+													"description": "The Code of Port indicating Customs clearance",
+													"minLength": 5,
+													"maxLength": 10
+												},
+												"nxtPrtOfUnlading": {
+													"type": "string",
+													"description": "The Code indicating the Port of next unlading",
+													"minLength": 5,
+													"maxLength": 6
+												},
+												"typOfCrgo": {
+													"type": "string",
+													"description": "The Code specifying the type of cargo based on the cross border carriage terms",
+													"minLength": 1,
+													"maxLength": 2
+												},
+												"itemTyp": {
+													"type": "string",
+													"description": "The Code specifying the type of cargo based on application of customs rules",
+													"minLength": 1,
+													"maxLength": 2
+												},
+												"crgoMvmt": {
+													"type": "string",
+													"description": "The Code specifying the type of cargo based on movement of cargo",
+													"minLength": 1,
+													"maxLength": 2
+												},
+												"natrOfCrgo": {
+													"type": "string",
+													"description": "The Flag to indicate the type of Transport Equipment carrying the referenced cargo",
+													"minLength": 1,
+													"maxLength": 4
+												}
+											}
+										},
+										"trnshpr": {
+											"type": "object",
+											"description": "The Details of Authorised Person undertaking responsibility of Transhipment",
+											"required": [
+												"trnshprCd",
+												"trnshprBond"
+											],
+											"properties": {
+												"trnshprCd": {
+													"type": "string",
+													"description": "The Registered Carrier) of Transhipper Code(Authorised ( Entity responsible for operating the Conveyance)",
+													"minLength": 1,
+													"maxLength": 10
+												},
+												"trnshprBond": {
+													"type": "string",
+													"description": "The Bond of Authorised Entity undertaking transhipment of the referenced cargo",
+													"minLength": 1,
+													"maxLength": 10
+												}
+											}
+										},
+										"trnsprtDoc": {
+											"type": "object",
+											"description": "The Details of Document issued by NVOCC",
+											"required": [
+												"prtOfAcptCdd",
+												"prtOfReceiptCdd",
+												"cnsgnrsName",
+												"cnsgnrStreetAddress",
+												"cnsgnrCity",
+												"cnsgnrCntryCd",
+												"cnsgnesName",
+												"cnsgneStreetAddress",
+												"cnsgneCity",
+												"cnsgneCntryCd",
+												"nameOfAnyOtherNotfdParty",
+												"notfdPartyStreetAddress",
+												"notfdPartyCity",
+												"goodsDescAsPerBl"
+											],
+											"properties": {
+												"prtOfAcptCdd": {
+													"type": "string",
+													"description": "Identification of the place where the goods are taken over by the carrier from the consignor,Coded",
+													"minLength": 5,
+													"maxLength": 6
+												},
+												"prtOfAcptName": {
+													"type": "string",
+													"description": "Identification of the place where the goods are taken over by the carrier from the consignor,Name ",
+													"minLength": 0,
+													"maxLength": 256
+												},
+												"prtOfReceiptCdd": {
+													"type": "string",
+													"description": "Identification of the place at which the goods have been or are to be received by the consignee(Port of Discharge)",
+													"minLength": 5,
+													"maxLength": 10
+												},
+												"prtOfReceiptName": {
+													"type": "string",
+													"description": "Name of the place at which the goods have been or are to be received by the consignee",
+													"minLength": 0,
+													"maxLength": 256
+												},
+												"cnsgnrsName": {
+													"type": "string",
+													"description": "The Name of the Consignor as per the Transport Document",
+													"minLength": 1,
+													"maxLength": 70
+												},
+												"cnsgnrsCd": {
+													"type": "string",
+													"description": "The Identification Code of the Consignor as per the Transport Document issued by Main Line Operator",
+													"minLength": 0,
+													"maxLength": 17
+												},
+												"cnsgnrCdTyp": {
+													"type": "string",
+													"description": "The Type of Identification of Code of the Consignor as per the Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 3
+												},
+												"cnsgnrStreetAddress": {
+													"type": "string",
+													"description": "The address of the Consignor as per Transport Document issued by MLO",
+													"minLength": 1,
+													"maxLength": 70
+												},
+												"cnsgnrCity": {
+													"type": "string",
+													"description": "The City of the Consignor as per Transport Document issued by MLO",
+													"minLength": 1,
+													"maxLength": 70
+												},
+												"cnsgnrCntrySubDivName": {
+													"type": "string",
+													"description": "The State or any Subdivision of the Country of the Consignor as per MLO",
+													"minLength": 0,
+													"maxLength": 35
+												},
+												"cnsgnrCntrySubDivCd": {
+													"type": "string",
+													"description": "The Code indicating Consignor's State or Subdivision of the country as per Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 9
+												},
+												"cnsgnrCntryCd": {
+													"type": "string",
+													"description": "The code indicating the country of Consignor as per Transport Document issued by MLO",
+													"minLength": 1,
+													"maxLength": 2
+												},
+												"cnsgnrPstcd": {
+													"type": "string",
+													"description": "The Postal Code of the Consignor as per Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 9
+												},
+												"cnsgnesName": {
+													"type": "string",
+													"description": "The Name of the Consignee as per the Transport Document",
+													"minLength": 1,
+													"maxLength": 70
+												},
+												"cnsgnesCd": {
+													"type": "string",
+													"description": "The Identification Code of the Consignee as per the Transport Document issued by Main Line Operator",
+													"minLength": 0,
+													"maxLength": 17
+												},
+												"typOfCd": {
+													"type": "string",
+													"description": "The Type of Identification of Code of the Consignee as per the Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 3
+												},
+												"cnsgneStreetAddress": {
+													"type": "string",
+													"description": "The address of the Consignee as per Transport Document issued by MLO",
+													"minLength": 1,
+													"maxLength": 70
+												},
+												"cnsgneCity": {
+													"type": "string",
+													"description": "The City of the Consignee as per Transport Document issued by MLO",
+													"minLength": 1,
+													"maxLength": 70
+												},
+												"cnsgneCntrySubDivName": {
+													"type": "string",
+													"description": "The State or any Subdivision of the Country of the Consignee as per MLO",
+													"minLength": 0,
+													"maxLength": 35
+												},
+												"cnsgneCntrySubDiv": {
+													"type": "string",
+													"description": "The Code indicating Consignee's State or Subdivision of the country as per Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 9
+												},
+												"cnsgneCntryCd": {
+													"type": "string",
+													"description": "The code indicating the country of Consignor as per Transport Document issued by MLO",
+													"minLength": 1,
+													"maxLength": 2
+												},
+												"cnsgnePstcd": {
+													"type": "string",
+													"description": "The Postal Code of the Consignor as per Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 9
+												},
+												"nameOfAnyOtherNotfdParty": {
+													"type": "string",
+													"description": "The Name of the Notified Party as per the Transport Document",
+													"minLength": 1,
+													"maxLength": 70
+												},
+												"panOfNotfdParty": {
+													"type": "string",
+													"description": "The Identification Code of the Notified Party as per the Transport Document issued by Main Line Operator",
+													"minLength": 0,
+													"maxLength": 17
+												},
+												"typOfNotfdPartyCd": {
+													"type": "string",
+													"description": "The Type of Identification of Code of the Notified Party as per the Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 3
+												},
+												"notfdPartyStreetAddress": {
+													"type": "string",
+													"description": "The address of the Notified Party as per Transport Document issued by MLO",
+													"minLength": 1,
+													"maxLength": 70
+												},
+												"notfdPartyCity": {
+													"type": "string",
+													"description": "The City of the Notified Party as per Transport Document issued by MLO",
+													"minLength": 1,
+													"maxLength": 70
+												},
+												"notfdPartyCntrySubDivName": {
+													"type": "string",
+													"description": "The State or any Subdivision of the Country of the Notified party as per Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 35
+												},
+												"notfdPartyCntrySubDiv": {
+													"type": "string",
+													"description": "The Code indicating Notified Party's State or Subdivision of the country as per Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 9
+												},
+												"notfdPartyCntryCd": {
+													"type": "string",
+													"description": "The code indicating the country of Notified Party as per Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 2
+												},
+												"notfdPartyPstcd": {
+													"type": "string",
+													"description": "The Postal Code of the Notified Party as per Transport Document issued by MLO",
+													"minLength": 0,
+													"maxLength": 9
+												},
+												"goodsDescAsPerBl": {
+													"type": "string",
+													"description": "A description of the type of cargo carried on the ship in general terms as per Transport Document issued by MLO",
+													"minLength": 1,
+													"maxLength": 512
+												},
+												"ucrTyp": {
+													"type": "string",
+													"description": "The Type of Unique Consignment Referencer",
+													"minLength": 0,
+													"maxLength": 3
+												},
+												"ucrCd": {
+													"type": "string",
+													"description": "Unique number by Shipper assigned to goods being subject to cross border transactions",
+													"minLength": 0,
+													"maxLength": 35
+												}
+											}
+										},
+										"trnsprtDocMsr": {
+											"type": "object",
+											"description": "The Details of Document issued by NVOCC",
+											"required": [
+												"marksNoOnPkgs", "nmbrOfPkgs", "typsOfPkgs"
+											],
+											"properties": {
+												"nmbrOfPkgs": {
+													"type": "number",
+													"description": "An explanation about the purpose of this instance.",
+													"minimum": 1.0,
+													"maximum": 99999999.0
+												},
+												"typsOfPkgs": {
+													"type": "string",
+													"description": "A code representing the type of package used for the referenced cargo.",
+													"minLength": 1,
+													"maxLength": 3
+												},
+												"marksNoOnPkgs": {
+													"type": "string",
+													"description": "An alphanumeric or symbolic identifier assigned by the shipper as a means to track cargo not carried in bulk",
+													"minLength": 1,
+													"maxLength": 512
+												},
+												"grossWeight": {
+													"type": "number",
+													"description": "Weight (mass) of goods including packaging but excluding the carrier's equipment for a document",
+													"minimum": 0.0,
+													"maximum": 999999999999.999
+												},
+												"netWeight": {
+													"type": "number",
+													"description": "Weight (mass) of the goods themselves without any packing",
+													"minimum": 0.0,
+													"maximum": 999999999999.999
+												},
+												"unitOfWeight": {
+													"type": "string",
+													"description": "A code representing the type of measure used for the referenced cargo",
+													"minLength": 0,
+													"maxLength": 3
+												},
+												"grossVolume": {
+													"type": "number",
+													"description": "A measure of the gross volume, normally calculated by multiplying the maximum length, width and height of the cargo item",
+													"minimum": 0.0,
+													"maximum": 999999999999.999
+												},
+												"unitOfVolume": {
+													"type": "string",
+													"description": "A code representing the type of measure used for the referenced cargo",
+													"minLength": 0,
+													"maxLength": 3
+												},
+												"invoiceValueOfCnsgmt": {
+													"type": "number",
+													"description": "Total of all invoice amounts declared in a single declaration",
+													"minimum": 0.0,
+													"maximum": 9999999999999999.99
+												},
+												"crncyCd": {
+													"type": "string",
+													"description": "Code specifying a monetary unit or currency",
+													"minLength": 0,
+													"maxLength": 3
+												}
+											}
+										},
+										"itemDtls": {
+											"type": "array",
+											"description": "The Details of Cargo items in reference to Transport Document",
+											"items": {
+												"type": "object",
+												"required": [
+													"crgoItemSeqNmbr",
+													"hsCd",
+													"unoCd",
+													"imdgCd"
+												],
+												"properties": {
+													"crgoItemSeqNmbr": {
+														"type": "number",
+														"description": "The Serial number indicating the cargo items carried in the Transport Document",
+														"minimum": 1.0,
+														"maximum": 99999.0
+													},
+													"hsCd": {
+														"type": "string",
+														"description": "A code describing the commodity classification, e.g. Harmonized System of Classification (HSN)",
+														"minLength": 1,
+														"maxLength": 8
+													},
+													"crgoItemDesc": {
+														"type": "string",
+														"description": "Plain language description of the nature of a goods item sufficient to identify it for cross-border regulatory purposes such as customs, phytosanitary, statistical or transport purposes",
+														"minLength": 1,
+														"maxLength": 256
+													},
+													"unoCd": {
+														"type": "string",
+														"description": "United Nations Dangerous Goods Identifier (UNDG) assigned by the UN Sub-Committee of Experts on the Transport of Dangerous Goods and shown in the IMO IMDG",
+														"minLength": 1,
+														"maxLength": 5
+													},
+													"imdgCd": {
+														"type": "string",
+														"description": "Any risk in addition to the class of the referenced dangerous goods according to the IMO IMDG Code",
+														"minLength": 1,
+														"maxLength": 4
+													},
+													"nmbrOfPkgs": {
+														"type": "number",
+														"description": "A description of the type of cargo carried on the ship in general terms as per Transport Document issued by MLO",
+														"minimum": 0.0,
+														"maximum": 99999999.0
+													},
+													"typOfPkgs": {
+														"type": "string",
+														"description": "Number of individual items packaged in such a way that they cannot be divided without first undoing the packing",
+														"minLength": 0,
+														"maxLength": 3
+													}
+												}
+											}
+										},
+										"trnsprtEqmt": {
+											"type": "array",
+											"description": "The Details of Transport Equipment referenced in Transport Document",
+											"items": {
+												"type": "object",
+												"required": [
+													"eqmtSeqNo",
+													"eqmtId",
+													"eqmtTyp",
+													"eqmtLoadStatus",
+													"socFlag", "totalNmbrOfPkgs"
+												],
+												"properties": {
+													"eqmtSeqNo": {
+														"type": "number",
+														"description": "The Serial number of Equipment referenced in the Transport Document",
+														"minimum": 1.0,
+														"maximum": 99999.0
+													},
+													"eqmtId": {
+														"type": "string",
+														"description": "Marks (letters and/or numbers) which identify equipment e.g. unit load device, Container",
+														"minLength": 1,
+														"maxLength": 17
+													},
+													"eqmtTyp": {
+														"type": "string",
+														"description": "The Code specifying the type of the Equipment used for Transport",
+														"minLength": 1,
+														"maxLength": 3
+													},
+													"eqmtSize": {
+														"type": "string",
+														"description": "The Code specifying the size of the Equipment used for Transport",
+														"minLength": 0,
+														"maxLength": 4
+													},
+													"eqmtLoadStatus": {
+														"type": "string",
+														"description": "Code specifying how full is piece of transport is",
+														"minLength": 1,
+														"maxLength": 3
+													},
+													"adtnlEqmtHold": {
+														"type": "string",
+														"description": "The Identifier for Additional Equipment used for Hold e.g Tray etc",
+														"minLength": 0,
+														"maxLength": 256
+													},
+													"finalDestLoc": {
+														"type": "string",
+														"description": "The Code indicating the location of unloading of the referenced cargo",
+														"minLength": 5,
+														"maxLength": 10
+													},
+													"eventDt": {
+														"type": "string",
+														"description": "The Code indicating the Date of Event",
+														"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])[T]([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+													},
+													"eqmtSealTyp": {
+														"type": "string",
+														"description": "The Type of Seal used for affixing to a Transport Equipment",
+														"minLength": 0,
+														"maxLength": 5
+													},
+													"eqmtSealNmbr": {
+														"type": "string",
+														"description": "The identification number of a seal affixed to a piece of transport equipment.",
+														"minLength": 0,
+														"maxLength": 15
+													},
+													"otherEqmtId": {
+														"type": "string",
+														"description": "The Identifier of Other Additional Equipment used for Carriage",
+														"minLength": 0,
+														"maxLength": 256
+													},
+													"eqmtStatus": {
+														"type": "string",
+														"description": "The Status of the Transport Equipment",
+														"minLength": 0,
+														"maxLength": 3
+													},
+													"socFlag": {
+														"type": "string",
+														"description": "The Indicator to specify the Ownership of the Container",
+														"minLength": 1,
+														"maxLength": 1
+													},
+													"cntrAgntCd": {
+														"type": "string",
+														"description": "The Identifier of the Container Agent responsible for handling of Container",
+														"minLength": 0,
+														"maxLength": 17
+													},
+													"cntrWeight": {
+														"type": "number",
+														"description": "The Verified Gross Mass (VGM) is the weight of the cargo including dunnage and bracing plus the tare weight of the container carrying this cargo in KGS",
+														"minimum": 0.0,
+														"maximum": 9999999999999.0
+													},
+													"totalNmbrOfPkgs": {
+														"type": "number",
+														"description": "The measure of packages being carried in the voyage for particular Transport Equipment",
+														"minimum": 1.0,
+														"maximum": 99999999.0
+													}
+												}
+											}
+										},
+										"itnry": {
+											"type": "array",
+											"description": "The Details of Routing for the referenced Cargo",
+											"items": {
+												"type": "object",
+												"description": "An explanation about the purpose of this instance.",
+												"required": [
+													"prtOfCallSeqNmbr",
+													"modeOfTrnsprt"
+												],
+												"properties": {
+													"prtOfCallSeqNmbr": {
+														"type": "number",
+														"description": "The Serial number indicating the sequence of the port of call by the referenced cargo",
+														"minimum": 1.0,
+														"maximum": 9999.0
+													},
+													"prtOfCallCdd": {
+														"type": "string",
+														"description": "The Code indicating the place/Port of call,Coded",
+														"minLength": 5,
+														"maxLength": 10
+													},
+													"prtOfCallName": {
+														"type": "string",
+														"description": "The Code indicating the place/Port of call, Text",
+														"minLength": 0,
+														"maxLength": 256
+													},
+													"nxtPrtOfCallCdd": {
+														"type": "string",
+														"description": "The Registered Coded of Next Port of Call, Coded",
+														"minLength": 5,
+														"maxLength": 10
+													},
+													"nxtPrtOfCallName": {
+														"type": "string",
+														"minLength": 0,
+														"maxLength": 256
+													},
+													"modeOfTrnsprt": {
+														"type": "string",
+														"description": "Mode of Transport used for crossing the Border/Movement,Coded",
+														"minLength": 1,
+														"maxLength": 1
+													}
+												}
+											}
+										},
+										"adtnlDec": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"required": [
+													"tagRef",
+													"refSerialNo",
+													"infoTyp",
+													"infoQualifier"
+												],
+												"properties": {
+													"tagRef": {
+														"type": "string",
+														"description": "The Flag indicating the part of the declaration to which this document is referenced",
+														"minLength": 1,
+														"maxLength": 5
+													},
+													"refSerialNo": {
+														"type": "string",
+														"description": "The Serial number in that part of the declaration to which this document is referenced",
+														"minimum": 1.0,
+														"maximum": 5.0
+													},
+													"infoTyp": {
+														"type": "string",
+														"description": "The code indicating the type of Additional Declaration being made",
+														"minLength": 1,
+														"maxLength": 10
+													},
+													"infoQualifier": {
+														"type": "string",
+														"description": "The Code indicating the additional declaration being made",
+														"minLength": 1,
+														"maxLength": 10
+													},
+													"infoCd": {
+														"type": "string",
+														"description": "The Response to the additional declaration as a Code",
+														"minLength": 0,
+														"maxLength": 35
+													},
+													"infoText": {
+														"type": "string",
+														"description": "The Response to the additional declaration as a Text",
+														"minLength": 0,
+														"maxLength": 100
+													},
+													"infoMsr": {
+														"type": "string",
+														"description": "The Response to Additional Declaration as a measure",
+														"minimum": 0.0,
+														"maximum": 5.0
+													},
+													"infoDt": {
+														"type": "string",
+														"description": "The Response to Additional Declaration as a date",
+														"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])[T]([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+													}
+												}
+											}
+										},
+										"crgoSuprtDocs": {
+											"type": "array",
+											"description": "The Details of Supporting Documents provided in reference to the cargo in Transport Document",
+											"items": {
+												"type": "object",
+												"required": [
+													"tagRef",
+													"refSerialNo",
+													"icegateUserid",
+													"irnNmbr",
+													"docRefNmbr",
+													"docTypCd",
+													"bnefcryCd", "subSerialNoRef"
+												],
+												"properties": {
+													"tagRef": {
+														"type": "string",
+														"description": "The Flag indicating the part of the declaration to which this document is referenced",
+														"minLength": 1,
+														"maxLength": 5
+													},
+													"refSerialNo": {
+														"type": "string",
+														"description": "The Serial number in that part of the declaration to which this document is referenced",
+														"minimum": 1.0,
+														"maximum": 5.0
+													},
+													"subSerialNoRef": {
+														"type": "string",
+														"description": "The Sub Serial Number in that part of the declaration to which this document is referenced",
+														"minimum": 1.0,
+														"maximum": 5.0
+													},
+													"icegateUserid": {
+														"type": "string",
+														"description": "The ICEGATE ID of the User who uploaded this document",
+														"minLength": 1,
+														"maxLength": 15
+													},
+													"irnNmbr": {
+														"type": "string",
+														"description": "The Unique Reference Number given by eSanchit on uploading of this document",
+														"minimum": 1.0,
+														"maximum": 14.0
+													},
+													"docRefNmbr": {
+														"type": "string",
+														"description": "The Unique Reference Number given by the Issuer to this document",
+														"minimum": 1.0,
+														"maximum": 17.0
+													},
+													"docTypCd": {
+														"type": "string",
+														"description": "The Identifier assigned by Customs to identify the type of the document",
+														"minLength": 1,
+														"maxLength": 6
+													},
+													"bnefcryCd": {
+														"type": "string",
+														"description": "The Idenfier of the Beneficiary of this Document",
+														"minLength": 1,
+														"maxLength": 35
+													}
+												}
+											}
+										}
+									}
+
+								}
+							},
+							"mcAdtnlDec": {
+								"type": "array",
+								"description": "The Details of Additional Declaration provided in reference to this Voyage",
+								"items": {
+									"type": "object",
+									"required": [
+										"tagRef",
+										"refSerialNo",
+										"infoTyp",
+										"infoQualifier"
+									],
+									"properties": {
+										"tagRef": {
+											"type": "string",
+											"description": "The Flag indicating the part of the declaration to which this document is referenced",
+											"minLength": 1,
+											"maxLength": 5
+										},
+										"refSerialNo": {
+											"type": "string",
+											"description": "The Serial number in that part of the declaration to which this document is referenced",
+											"minLength": 1,
+											"maxLength": 5
+										},
+										"infoTyp": {
+											"type": "string",
+											"description": "The code indicating the type of Additional Declaration being made",
+											"minLength": 1,
+											"maxLength": 10
+										},
+										"infoQualifier": {
+											"type": "string",
+											"description": "The Code indicating the additional declaration being made",
+											"minLength": 1,
+											"maxLength": 10
+										},
+										"infoCd": {
+											"type": "string",
+											"description": "The Response to the additional declaration as a Code",
+											"minLength": 0,
+											"maxLength": 35
+										},
+										"infoText": {
+											"type": "string",
+											"description": "The Response to the additional declaration as a Text",
+											"minLength": 0,
+											"maxLength": 100
+										},
+										"infoMsr": {
+											"type": "string",
+											"description": "The Response to Additional Declaration as a measure",
+											"minLength": 0,
+											"maxLength": 5
+										},
+										"infoDt": {
+											"type": "string",
+											"description": "The Response to Additional Declaration as a date",
+											"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])[T]([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+										}
+									}
+								}
+							},
+							"mcSuprtDocs": {
+								"type": "array",
+								"description": "The Details of Supporting Documents provided in reference to the cargo in Transport Document",
+								"items": {
+									"type": "object",
+									"required": [
+										"tagRef",
+										"refSerialNo",
+										"subSerialNoRef",
+										"icegateUserid",
+										"irnNmbr",
+										"docRefNmbr",
+										"docTypCd",
+										"bnefcryCd"
+									],
+									"properties": {
+										"tagRef": {
+											"type": "string",
+											"description": "The Flag indicating the part of the declaration to which this document is referenced",
+											"minLength": 1,
+											"maxLength": 5
+										},
+										"refSerialNo": {
+											"type": "string",
+											"description": "The Serial number in that part of the declaration to which this document is referenced",
+											"minLength": 1,
+											"maxLength": 5
+										},
+										"subSerialNoRef": {
+											"type": "string",
+											"description": "The Sub Serial Number in that part of the declaration to which this document is referenced",
+											"minLength": 1,
+											"maxLength": 5
+										},
+										"icegateUserid": {
+											"type": "string",
+											"description": "The ICEGATE ID of the User who uploaded this document",
+											"minLength": 1,
+											"maxLength": 15
+										},
+										"irnNmbr": {
+											"type": "string",
+											"description": "The Unique Reference Number given by eSanchit on uploading of this document",
+											"minLength": 1,
+											"maxLength": 14
+										},
+										"docRefNmbr": {
+											"type": "string",
+											"description": "The Unique Reference Number given by the Issuer to this document",
+											"minLength": 1,
+											"maxLength": 17
+										},
+										"docTypCd": {
+											"type": "string",
+											"description": "The Identifier assigned by Customs to identify the type of the document",
+											"minLength": 1,
+											"maxLength": 6
+										},
+										"bnefcryCd": {
+											"type": "string",
+											"description": "The Idenfier of the Beneficiary of this Document",
+											"minLength": 1,
+											"maxLength": 35
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"prsnOnBoard": {
+					"type": "array",
+					"description": "The Details of Persons in relation to the referenced Conveyance",
+					"items": {
+						"type": "object",
+						"required": [
+							"prsnOnBoardSeqNmbr",
+							"prsnDtls",
+							"prsnId"
+						],
+						"properties": {
+							"prsnOnBoardSeqNmbr": {
+								"type": "number",
+								"description": "A number indicating the order of the referenced person in a list.",
+								"minimum": 1.0,
+								"maximum": 99999.0
+							},
+							"prsnDtls": {
+								"type": "object",
+								"description": "An explanation about the purpose of this instance.",
+								"required": [
+									"prsnTypCdd",
+									"prsnFamilyName",
+									"prsnGivenName",
+									"prsnNatnltyCdd",
+									"psngrInTransitIndctr",
+									"prsnGenderCdd",
+									"prsnDtOfBirth",
+									"prsnPlaceOfBirthName",
+									"prsnCntryOfBirthCdd"
+								],
+								"properties": {
+									"prsnTypCdd": {
+										"type": "string",
+										"description": "A code representing the type of the referenced personâ€™s presented identity or travel document.",
+										"minLength": 1,
+										"maxLength": 3
+									},
+									"prsnFamilyName": {
+										"type": "string",
+										"description": "An explanation about the purpose of this instance.",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"prsnGivenName": {
+										"type": "string",
+										"description": "The given name of the referenced person.",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"prsnNatnltyCdd": {
+										"type": "string",
+										"description": "An explanation about the purpose of this instance.",
+										"minLength": 1,
+										"maxLength": 2
+									},
+									"psngrInTransitIndctr": {
+										"type": "number",
+										"description": "A â€œyes/noâ€ indicator of whether the referenced person is in transit to a foreign country.",
+										"minimum": 1.0,
+										"maximum": 1.0
+									},
+									"crewmemberRankOrRatingName": {
+										"type": "string",
+										"description": "The description of the referenced person's rank or rating on the ship.",
+										"minLength": 0,
+										"maxLength": 70
+									},
+									"crewmemberRankOrRatingCdd": {
+										"type": "string",
+										"description": "A code representing the referenced crewmember's rank or rating on the ship.",
+										"minLength": 0,
+										"maxLength": 10
+									},
+									"psngrPrtOfEmbrktnCdd": {
+										"type": "string",
+										"description": "The code representing the port from which the referenced person embarked the ship.",
+										"minLength": 0,
+										"maxLength": 5
+									},
+									"psngrPrtOfEmbrktnName": {
+										"type": "string",
+										"description": "An explanation about the purpose of this instance.",
+										"minLength": 0,
+										"maxLength": 256
+									},
+									"psngrPrtOfDsmbrktnCdd": {
+										"type": "string",
+										"description": "An explanation about the purpose of this instance.",
+										"minLength": 0,
+										"maxLength": 5
+									},
+									"psngrPrtOfDsmbrktnName": {
+										"type": "string",
+										"description": "The name of the port from which referenced passenger plans to disembark.",
+										"minLength": 0,
+										"maxLength": 256
+									},
+									"prsnGenderCdd": {
+										"type": "string",
+										"description": "A code representing the gender of the referenced passenger.",
+										"minLength": 1,
+										"maxLength": 3
+									},
+									"prsnDtOfBirth": {
+										"type": "string",
+										"description": "The referenced personâ€™s date of birth as shown on the personâ€™s identity document.",
+										"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+									},
+									"prsnPlaceOfBirthName": {
+										"type": "string",
+										"description": "The name of the referenced personâ€™s place of birth as shown on the personâ€™s identity or travel document.",
+										"minLength": 1,
+										"maxLength": 35
+									},
+									"prsnCntryOfBirthCdd": {
+										"type": "string",
+										"description": "A code representing the nationality of the referenced person as shown on the personâ€™s identity or travel document.",
+										"minLength": 1,
+										"maxLength": 2
+									}
+								}
+							},
+							"prsnId": {
+								"type": "object",
+								"description": "An explanation about the purpose of this instance.",
+								"required": [
+									"prsnIdDocExpiryDt",
+									"prsnIdOrTravelDocIssuingNationCdd",
+									"prsnIdOrTravelDocNmbr",
+									"prsnIdOrTravelDocTypCdd"
+								],
+								"properties": {
+									"prsnIdDocExpiryDt": {
+										"type": "string",
+										"description": "The expiry date shown on the referenced personâ€™s identity document.",
+										"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$"
+									},
+									"prsnIdOrTravelDocIssuingNationCdd": {
+										"type": "string",
+										"description": "An explanation about the purpose of this instance.",
+										"minLength": 1,
+										"maxLength": 2
+									},
+									"prsnIdOrTravelDocNmbr": {
+										"type": "string",
+										"description": "A code representing the referenced personâ€™s presented identity or travel document.",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"prsnIdOrTravelDocTypCdd": {
+										"type": "string",
+										"description": "A code representing the type of the referenced personâ€™s presented identity or travel document.",
+										"minLength": 1,
+										"maxLength": 3
+									}
+								}
+							},
+							"visaDtls": {
+								"type": "object",
+								"description": "The Details of Visa of Referenced Person",
+								"required": [
+									"prsnVisa",
+									"pnrNmbr"
+								],
+								"properties": {
+									"prsnVisa": {
+										"type": "string",
+										"description": "The unique number assigned to the referenced personâ€™s visa by the issuing nation.",
+										"minLength": 1,
+										"maxLength": 70
+									},
+									"pnrNmbr": {
+										"type": "string",
+										"description": "Passenger Name Record",
+										"minLength": 1,
+										"maxLength": 20
+									}
+								}
+							}
+						}
+					}
+				},
+				"voyageTransportEquipment": {
+					"type": "array",
+					"description": "Voyage Transport Equipment ",
+					"items": {
+						"type": "object",
+						"required": [
+							"equipmentSequenceNo",
+							"equipmentId",
+							"equipmentType",
+							"equipmentLoadStatus",
+							"socFlag",
+							"containerBondFlag"
+						],
+						"properties": {
+							"equipmentSequenceNo": {
+								"type": "number",
+								"description": "equipment sequence number",
+								"maximum": 9999.0,
+								"minimum": 1.0
+							},
+							"equipmentId": {
+								"type": "string",
+								"description": "Container ID",
+								"maxLength": 17,
+								"minLength": 1
+							},
+							"equipmentType": {
+								"type": "string",
+								"description": "Equipment Type",
+								"maxLength": 3,
+								"minLength": 1
+							},
+							"equipmentSize": {
+								"type": "string",
+								"description": "Equipment Size",
+								"maxLength": 4,
+								"minLength": 0
+							},
+							"equipmentLoadStatus": {
+								"type": "string",
+								"description": "Equipment Load Status",
+								"maxLength": 3,
+								"minLength": 1
+							},
+							"additionalEquipmentHold": {
+								"type": "string",
+								"description": "Additional Equipment Hold",
+								"maxLength": 256,
+								"minLength": 0
+							},
+							"finalDestinationLocation": {
+								"type": "string",
+								"description": "Final Destination Location",
+								"minLength": 5,
+								"maxLength": 10
+							},
+							"equipmentSealType": {
+								"type": "string",
+								"description": "Equipment Seal Type",
+								"maxLength": 5,
+								"minLength": 0
+							},
+							"equipmentSealNumber": {
+								"type": "string",
+								"description": "Equipment Seal Number",
+								"maxLength": 15,
+								"minLength": 0
+							},
+							"otherEquipmentId": {
+								"type": "string",
+								"description": "other Equipment ID",
+								"maxLength": 256,
+								"minItems": 0
+							},
+							"equipmentStatus": {
+								"type": "string",
+								"description": "Equipment Status",
+								"maxLength": 0,
+								"minLength": 3
+							},
+							"socFlag": {
+								"type": "string",
+								"description": "SOC Flag (Y/N)",
+								"minLength": 1,
+								"maxLength": 1
+							},
+							"containerAgentCode": {
+								"type": "string",
+								"description": "Container Agent Code",
+								"maxLength": 17,
+								"minLength": 0
+							},
+							"containerWeight": {
+								"type": "number",
+								"description": "The Verified Gross Mass (VGM) is the weight of the cargo including dunnage and bracing plus the tare weight of the container carrying this cargo in KGS",
+								"minimum": 0.0,
+								"maximum": 9999999999999.0
+							},
+							"totalNumberOfPackages": {
+								"type": "number",
+								"description": "The measure of packages being carried in the voyage for particular Transport Equipment",
+								"minimum": 0.0,
+								"maximum": 99999999.0
+							},
+							"stowagePositionOfContainer": {
+								"type": "string",
+								"maxLength": 17,
+								"minLength": 0
+							},
+							"containerBondFlag": {
+								"type": "string",
+								"minLength": 1,
+								"maxLength": 1
+							}
+						}
+					}
+				},
+				"tmSuprtDocs": {
+					"type": "array",
+					"description": "The Details of Supporting Documents provided in reference to the cargo in Transport Document",
+					"items": {
+						"type": "object",
+						"required": [
+							"tagRef",
+							"refSerialNo",
+							"subSerialNoRef",
+							"icegateUserid",
+							"irnNmbr",
+							"docRefNmbr",
+							"docTypCd",
+							"bnefcryCd"
+						],
+						"properties": {
+							"tagRef": {
+								"type": "string",
+								"description": "The Flag indicating the part of the declaration to which this document is referenced",
+								"minLength": 1,
+								"maxLength": 5
+							},
+							"refSerialNo": {
+								"type": "string",
+								"description": "The Serial number in that part of the declaration to which this document is referenced",
+								"minimum": 1.0,
+								"maximum": 5.0
+							},
+							"subSerialNoRef": {
+								"type": "string",
+								"description": "The Sub Serial Number in that part of the declaration to which this document is referenced",
+								"minimum": 1.0,
+								"maximum": 5.0
+							},
+							"icegateUserid": {
+								"type": "string",
+								"description": "The ICEGATE ID of the User who uploaded this document",
+								"minLength": 1,
+								"maxLength": 15
+							},
+							"irnNmbr": {
+								"type": "string",
+								"description": "The Unique Reference Number given by eSanchit on uploading of this document",
+								"minimum": 1.0,
+								"maximum": 14.0
+							},
+							"docRefNmbr": {
+								"type": "string",
+								"description": "The Unique Reference Number given by the Issuer to this document",
+								"minimum": 1.0,
+								"maximum": 17.0
+							},
+							"docTypCd": {
+								"type": "string",
+								"description": "The Identifier assigned by Customs to identify the type of the document",
+								"minLength": 1,
+								"maxLength": 6
+							},
+							"bnefcryCd": {
+								"type": "string",
+								"description": "The Idenfier of the Beneficiary of this Document",
+								"minLength": 1,
+								"maxLength": 35
+							}
+						}
+					}
+				},
+				"tmAdtnlDec": {
+					"type": "array",
+					"description": "The Details of Additional Declaration provided in reference to this Voyage",
+					"items": {
+						"type": "object",
+						"required": [
+							"tagRef",
+							"refSerialNo",
+							"infoTyp",
+							"infoQualifier"
+						],
+						"properties": {
+							"tagRef": {
+								"type": "string",
+								"description": "The Flag indicating the part of the declaration to which this document is referenced",
+								"minLength": 1,
+								"maxLength": 5
+							},
+							"refSerialNo": {
+								"type": "string",
+								"description": "The Serial number in that part of the declaration to which this document is referenced",
+								"minLength": 1,
+								"maxLength": 5
+							},
+							"infoTyp": {
+								"type": "string",
+								"description": "The code indicating the type of Additional Declaration being made",
+								"minLength": 1,
+								"maxLength": 10
+							},
+							"infoQualifier": {
+								"type": "string",
+								"description": "The Code indicating the additional declaration being made",
+								"minLength": 1,
+								"maxLength": 10
+							},
+							"infoCd": {
+								"type": "string",
+								"description": "The Response to the additional declaration as a Code",
+								"minLength": 0,
+								"maxLength": 35
+							},
+							"infoText": {
+								"type": "string",
+								"description": "The Response to the additional declaration as a Text",
+								"minLength": 0,
+								"maxLength": 100
+							},
+							"infoMsr": {
+								"type": "string",
+								"description": "The Response to Additional Declaration as a measure",
+								"minLength": 0,
+								"maxLength": 5
+							},
+							"infoDt": {
+								"type": "string",
+								"description": "The Response to Additional Declaration as a date",
+								"pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])[T]([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

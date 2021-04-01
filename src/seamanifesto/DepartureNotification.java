@@ -31,8 +31,7 @@ public class DepartureNotification extends javax.swing.JFrame {
         JSONParser jparser = new JSONParser();
         
         try {
-            Object obj = jparser.parse(new FileReader(
-                    getClass().getResource("/schemas/SDN.json").getFile()));
+            Object obj = jparser.parse(new FileReader("lib/SDN.json"));
             
             this.samSchema = (JSONObject) obj;
 
