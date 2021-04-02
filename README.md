@@ -14,7 +14,7 @@ Application for Ship Agents from all over India to record ship details and ammen
 - Soham Ghosh [Developer 3]
 
 ## Task List:
-- [ ] Entity + Control Classes, Unit Tests 
+- [x] Entity + Control Classes, Unit Tests 
 - [ ] Entity + Control, integrated with Boundary/Swing Classes 
 - [ ] Integration of all use cases
 - [ ] System Testing 
